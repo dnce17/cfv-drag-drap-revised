@@ -1,6 +1,8 @@
 const fill = document.querySelectorAll('.fill');
 const empties = document.querySelectorAll('.empty');
 const damage = document.querySelector('#damage');
+const deck = document.querySelector('#deck');
+const hand = document.querySelector('#hand');
 
 // Fill listeners
 for (const filled of fill) {
@@ -76,4 +78,9 @@ function tap() {
       }
     }
   }
+}
+
+deck.addEventListener('click', draw);
+function draw() {
+  hand.appendChild(this.lastChild);
 }

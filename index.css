@@ -96,13 +96,13 @@ img {
   margin-bottom: -130px;
 }
 
-#hand {
+#hand_container {
   width: 800px;
   height: 200px;
   border: 2px solid black;
 }
 
-#hand .empty {
+#hand_container .empty {
   display: flex;
   justify-content: center;
   align-items: center;
