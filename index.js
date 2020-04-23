@@ -3,6 +3,7 @@ const empties = document.querySelectorAll('.empty');
 const damage = document.querySelector('#damage');
 const deck = document.querySelector('#deck');
 const hand = document.querySelector('#hand');
+const deckCount = document.querySelector('.counter');
 
 // Fill listeners
 for (const filled of fill) {
@@ -67,7 +68,7 @@ function dragDrop() {
 }
 
 function tap() {
-  const noTap = [0, 5, 9];
+  const noTap = [0, 4, 8];
   for (const val of noTap) {
     if (empties[val].contains(this)) {
     } else {
@@ -75,12 +76,41 @@ function tap() {
         this.className += ' tap';
       } else {
         this.classList.toggle('tap');
+        console.log('works');
       }
     }
   }
 }
-
+var imgAmt = deck.getElementsByTagName("img").length;
 deck.addEventListener('click', draw);
 function draw() {
-  hand.appendChild(this.lastChild);
+  if (imgAmt == 0) {
+    return;
+  } else {
+    // console.log('card drawed');
+    var randCard = Math.floor(Math.random() * imgAmt)
+    if (this.children[randCard].getAttribute('draggable')) {
+      console.log('idk');
+      hand.appendChild(this.children[randCard]);
+      imgAmt--;
+    }
+  }
 }
+
+// deckCount.textContent = imgAmt;
+// const deckAmt = new MutationObserver(mutations => {
+//   mutations.forEach(record => {
+//     if (record.addedNodes.length > 0) {
+//       imgAmt += record.addedNodes.length;
+//       deckCount.textContent = imgAmt;
+//     }
+//     if (record.removedNodes.length > 0) {
+//       imgAmt -= record.removedNodes.length;
+//       deckCount.textContent = imgAmt;
+//     }
+//   })
+// })
+
+// deckAmt.observe(deck, {
+//   childList: true
+// })

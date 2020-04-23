@@ -24,7 +24,7 @@ img {
   border: 2px blue solid;
   grid-gap: 5px;
   padding: 5px;
-  grid-template-columns: repeat(4, 300px) 160px;
+  grid-template-columns: 220px repeat(3, 250px) 160px;
   grid-template-rows: repeat(2, 250px);
   grid-template-areas: "damage RC_1 VC RC_5 deck"
                        "damage RC_2 RC_3 RC_4 drop";
@@ -71,9 +71,7 @@ img {
 }
 
 .hovered {
-  background-color: rgba(0, 0, 255, 0.1);
-  border-style: solid;
-  border-color: skyblue;
+  box-shadow: 0 0 10pt 2pt red;
 }
 
 .invisible {
@@ -115,9 +113,20 @@ img {
   flex-direction: column-reverse;
 }
 
-#damage > div {
+#damage div {
   /* background-color: green; */
   width: 200px;
   height: 400px;
 }
 
+#deck {
+  position: relative;
+}
+
+#deck span {
+  background-color: darkolivegreen;
+  position: absolute;
+  width: 160px;
+  bottom: 0px;
+  text-align: center;
+}
