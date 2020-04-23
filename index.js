@@ -18,12 +18,15 @@ for (const empty of empties) {
 
 
 function dragStart() {
-  console.log('start')
+  // console.log('start')
+  if (this.classList.toggle('tap')) {
+    this.classList.toggle('tap')
+  }
   setTimeout(() => (this.className = 'invisible'), 0);
 }
 
 function dragEnd() {
-  console.log('end')
+  // console.log('end')
   this.className = 'fill';
 }
 
@@ -31,22 +34,22 @@ function dragEnd() {
 
 function dragOver(e) {
   e.preventDefault();
-  console.log('over');
+  // console.log('over');
 }
 
 function dragEnter(e) {
-  console.log('enter');
+  // console.log('enter');
   e.preventDefault();
   this.className += ' hovered';
 }
 
 function dragLeave() {
-  console.log('leave');
+  // console.log('leave');
   this.className = 'empty';
 }
 
 function dragDrop() {
-  console.log('drop');
+  // console.log('drop');
   this.className = 'empty';
   for (const filled of fill) {
     if (filled.classList.contains('invisible')) {

@@ -98,3 +98,12 @@ img {
   width: 800px;
   height: 200px;
 }
+
+/* #damage {
+  display: flex;
+  flex-direction: column-reverse;
+} */
+
+/* #damage .fill {
+  transform: rotate(-90deg);
+} */
