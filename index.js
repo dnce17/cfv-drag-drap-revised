@@ -67,7 +67,7 @@ function dragDrop() {
 }
 
 function tap() {
-  const noTap = [0, 4, 8];
+  const noTap = [0, 5, 9];
   for (const val of noTap) {
     if (empties[val].contains(this)) {
     } else {

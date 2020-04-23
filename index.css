@@ -24,8 +24,8 @@ img {
   border: 2px blue solid;
   grid-gap: 5px;
   padding: 5px;
-  grid-template-columns: repeat(4, 250px) 160px;
-  grid-template-rows: repeat(2, 210px);
+  grid-template-columns: repeat(4, 300px) 160px;
+  grid-template-rows: repeat(2, 250px);
   grid-template-areas: "damage RC_1 VC RC_5 deck"
                        "damage RC_2 RC_3 RC_4 drop";
 }
@@ -93,7 +93,7 @@ img {
 #duel_area #damage .fill {
   position: relative; 
   cursor: pointer;
-  margin-bottom: -130px;
+  margin-bottom: -125px;
 }
 
 #hand_container {
@@ -115,7 +115,9 @@ img {
   flex-direction: column-reverse;
 }
 
-#damage .empty {
-  display: flex;
-  flex-direction: column-reverse;
+#damage > div {
+  /* background-color: green; */
+  width: 200px;
+  height: 400px;
 }
+
