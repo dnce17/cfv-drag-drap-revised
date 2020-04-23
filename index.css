@@ -61,6 +61,10 @@
   grid-area: drop;
 }
 
+#duel_area .tap {
+  transform: rotate(-90deg);
+}
+
 .hovered {
   background-color: rgba(0, 0, 255, 0.1);
   border-style: solid;
@@ -79,7 +83,6 @@
 img {
   width: 130px;
   height: auto
-  position: absolute;
 }
 
 #hand {

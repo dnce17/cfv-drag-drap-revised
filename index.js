@@ -5,6 +5,7 @@ const empties = document.querySelectorAll('.empty');
 for (const filled of fill) {
   filled.addEventListener('dragstart', dragStart);
   filled.addEventListener('dragend', dragEnd);
+  filled.addEventListener('click', tap);
 }
 
 // Loop through empty boxes and add listeners
@@ -54,4 +55,17 @@ function dragDrop() {
   }
 }
 
+function tap() {
+  const noTap = [0, 4, 8];
+  for (const val of noTap) {
+    if (empties[val].contains(this)) {
+    } else {
+      if (this.classList.contains('tap') == false) {
+        this.className += ' tap';
+      } else {
+        this.classList.toggle('tap');
+      }
+    }
+  }
+}
 
