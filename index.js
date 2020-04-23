@@ -1,5 +1,6 @@
 const fill = document.querySelectorAll('.fill');
 const empties = document.querySelectorAll('.empty');
+const damage = document.querySelector('#damage');
 
 // Fill listeners
 for (const filled of fill) {
@@ -27,7 +28,12 @@ function dragStart() {
 
 function dragEnd() {
   // console.log('end')
-  this.className = 'fill';
+  if (damage.contains(this)) {
+    this.className = 'fill';
+    this.className += ' tap'
+  } else {
+    this.className = 'fill';
+  }
 }
 
 // it is safe to include preventDefault in case the the browser works against you 
@@ -71,4 +77,3 @@ function tap() {
     }
   }
 }
-

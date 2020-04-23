@@ -12,6 +12,11 @@
   align-items: center;
 }
 
+img {
+  width: 130px;
+  height: auto;
+}
+
 #duel_area {
   position: relative;
   display: grid;
@@ -80,9 +85,15 @@
   cursor: pointer;
 }
 
-img {
-  width: 130px;
-  height: auto;
+#duel_area .fill {
+  position: absolute; 
+  cursor: pointer;
+}
+
+#duel_area #damage .fill {
+  position: relative; 
+  cursor: pointer;
+  margin-bottom: -130px;
 }
 
 #hand {
@@ -107,9 +118,4 @@ img {
 #damage .empty {
   display: flex;
   flex-direction: column-reverse;
-}
-
-#damage .fill {
-  transform: rotate(-90deg);
-  margin-bottom: -130px;
 }
