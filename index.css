@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+
+#container {
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#duel_area {
+  position: relative;
+  display: grid;
+  background-color: #3e2723;
+  border: 2px blue solid;
+  grid-gap: 5px;
+  padding: 5px;
+  grid-template-columns: repeat(4, 250px) 160px;
+  grid-template-rows: repeat(2, 210px);
+  grid-template-areas: "damage RC_1 VC RC_5 deck"
+  										 "damage RC_2 RC_3 RC_4 drop";
+}
+
+#duel_area .empty {
+  background-color: beige;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.empty:nth-of-type(1) {
+  grid-area: damage;
+}
+.empty:nth-of-type(2) {
+  grid-area: RC_1;
+}
+.empty:nth-of-type(3) {
+  grid-area: VC;
+}
+.empty:nth-of-type(4) {
+  grid-area: RC_5;
+}
+.empty:nth-of-type(5) {
+  grid-area: deck;
+}
+.empty:nth-of-type(6) {
+  grid-area: RC_2;
+}
+.empty:nth-of-type(7) {
+  grid-area: RC_3;
+}
+.empty:nth-of-type(8) {
+  grid-area: RC_4;
+}
+.empty:nth-of-type(9) {
+  grid-area: drop;
+}
+
+.hovered {
+  background-color: rgba(0, 0, 255, 0.1);
+  border-style: solid;
+  border-color: skyblue;
+}
+
+.invisible {
+  display: none;
+}
+
+.fill {
+  position: relative; 
+  cursor: pointer;
+}
+
+img {
+  width: 130px;
+  height: auto
+  position: absolute;
+}
+
+#hand {
+  width: 800px;
+  height: 200px;
+  border: 2px solid black;
+}
+
+#hand .empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 200px;
+}
