@@ -22,7 +22,7 @@
   grid-template-columns: repeat(4, 250px) 160px;
   grid-template-rows: repeat(2, 210px);
   grid-template-areas: "damage RC_1 VC RC_5 deck"
-  										 "damage RC_2 RC_3 RC_4 drop";
+                       "damage RC_2 RC_3 RC_4 drop";
 }
 
 #duel_area .empty {
@@ -82,7 +82,7 @@
 
 img {
   width: 130px;
-  height: auto
+  height: auto;
 }
 
 #hand {
@@ -99,11 +99,17 @@ img {
   height: 200px;
 }
 
-/* #damage {
+#damage {
   display: flex;
   flex-direction: column-reverse;
-} */
+}
 
-/* #damage .fill {
+#damage .empty {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#damage .fill {
   transform: rotate(-90deg);
-} */
+  margin-bottom: -130px;
+}
