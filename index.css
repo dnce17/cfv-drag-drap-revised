@@ -92,6 +92,7 @@ img {
   position: relative; 
   cursor: pointer;
   margin-bottom: -105px;
+  top: -65px;
 }
 
 #hand_container {
@@ -111,13 +112,14 @@ img {
 #damage {
   display: flex;
   flex-direction: column-reverse;
+  position: relative;
 }
 
-#damage .align_purposes {
-  /* background-color: green; */
+/* #damage .align_purposes {
+  background-color: green;
   width: 200px;
   height: 400px;
-}
+} */
 
 #deck {
   position: relative;
@@ -130,6 +132,11 @@ img {
 #drop {
   position: relative;
 }
+
+#drop img {
+  margin-top: -10px;
+}
+
 
 .counter {
   background-color: darkolivegreen;

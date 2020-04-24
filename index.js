@@ -116,16 +116,16 @@ function draw() {
   }
 }
 
-counter[0].textContent = deckCount;
+counter[1].textContent = deckCount;
 const deckAmt = new MutationObserver(mutations => {
   mutations.forEach(record => {
     if (record.addedNodes.length > 0) {
       deckCount = deck.getElementsByTagName("img").length;
-      counter[0].textContent = deckCount;
+      counter[1].textContent = deckCount;
     }
     if (record.removedNodes.length > 0) {
       deckCount = deck.getElementsByTagName("img").length;
-      counter[0].textContent = deckCount;
+      counter[1].textContent = deckCount;
     }
   })
 })
@@ -135,23 +135,42 @@ deckAmt.observe(deck, {
 })
 
 var dropCount = drop.getElementsByTagName("img").length
-counter[1].textContent = dropCount;
+counter[2].textContent = dropCount;
 const dropAmt = new MutationObserver(mutations => {
   mutations.forEach(record => {
     if (record.addedNodes.length > 0) {
       dropCount = drop.getElementsByTagName("img").length
-      counter[1].textContent = dropCount;
+      counter[2].textContent = dropCount;
       // console.log('drop +');
     }
     if (record.removedNodes.length > 0) {
       dropCount = drop.getElementsByTagName("img").length
-      counter[1].textContent = dropCount;
+      counter[2].textContent = dropCount;
       // console.log('drop -');
     }
   })
 })
 
 dropAmt.observe(drop, {
+  childList: true
+})
+
+var damageCount = damage.getElementsByTagName("img").length
+counter[0].textContent = damageCount;
+const damageAmt = new MutationObserver(mutations => {
+  mutations.forEach(record => {
+    if (record.addedNodes.length > 0) {
+      damageCount = damage.getElementsByTagName("img").length
+      counter[0].textContent = damageCount;
+    }
+    if (record.removedNodes.length > 0) {
+      damageCount = damage.getElementsByTagName("img").length
+      counter[0].textContent = damageCount;
+    }
+  })
+})
+
+damageAmt.observe(damage, {
   childList: true
 })
 
