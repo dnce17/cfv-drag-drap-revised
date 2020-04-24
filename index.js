@@ -4,6 +4,7 @@ const damage = document.querySelector('#damage');
 const deck = document.querySelector('#deck');
 const hand = document.querySelector('#hand');
 const deckCount = document.querySelector('.counter');
+const drop = document.querySelector('#drop');
 
 // Fill listeners
 for (const filled of fill) {
@@ -45,14 +46,14 @@ function dragEnd() {
 // it is safe to include preventDefault in case the the browser works against you 
 
 function dragOver(e) {
-  e.preventDefault();
   // console.log('over');
+  e.preventDefault();
+  this.className += ' hovered';
 }
 
 function dragEnter(e) {
   // console.log('enter');
   e.preventDefault();
-  this.className += ' hovered';
 }
 
 function dragLeave() {
@@ -129,3 +130,5 @@ const deckAmt = new MutationObserver(mutations => {
 deckAmt.observe(deck, {
   childList: true
 })
+
+// 
