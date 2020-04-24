@@ -3,7 +3,8 @@ const empties = document.querySelectorAll('.empty');
 const damage = document.querySelector('#damage');
 const deck = document.querySelector('#deck');
 const hand = document.querySelector('#hand');
-const deckCount = document.querySelector('.counter');
+// const deckCount = document.querySelector('.counter');
+const counter = document.querySelectorAll('.counter');
 const drop = document.querySelector('#drop');
 
 // Fill listeners
@@ -48,7 +49,9 @@ function dragEnd() {
 function dragOver(e) {
   // console.log('over');
   e.preventDefault();
-  this.className += ' hovered';
+  if (this.classList.contains('hovered') == false) {
+    this.className += ' hovered';
+  }
 }
 
 function dragEnter(e) {
@@ -99,30 +102,30 @@ function blast() {
   }
 }
 
-var imgAmt = deck.getElementsByTagName("img").length;
+var deckCount = deck.getElementsByTagName("img").length;
 deck.addEventListener('click', draw);
 function draw() {
-  // if (imgAmt == 0) {
+  // if (deckCount == 0) {
   //   return;
   // }
-  var randCard = Math.floor(Math.random() * imgAmt)
+  var randCard = Math.floor(Math.random() * deckCount)
   if (this.children[randCard].getAttribute('draggable')) {
     hand.appendChild(this.children[randCard]);
-    // imgAmt--;
-    // deckCount.textContent = imgAmt;
+    // deckCount--;
+    // deckCount.textContent = deckCount;
   }
 }
 
-deckCount.textContent = imgAmt;
+counter[0].textContent = deckCount;
 const deckAmt = new MutationObserver(mutations => {
   mutations.forEach(record => {
     if (record.addedNodes.length > 0) {
-      imgAmt = deck.getElementsByTagName("img").length;
-      deckCount.textContent = imgAmt;
+      deckCount = deck.getElementsByTagName("img").length;
+      counter[0].textContent = deckCount;
     }
     if (record.removedNodes.length > 0) {
-      imgAmt = deck.getElementsByTagName("img").length;
-      deckCount.textContent = imgAmt;
+      deckCount = deck.getElementsByTagName("img").length;
+      counter[0].textContent = deckCount;
     }
   })
 })
@@ -130,5 +133,27 @@ const deckAmt = new MutationObserver(mutations => {
 deckAmt.observe(deck, {
   childList: true
 })
+
+var dropCount = drop.getElementsByTagName("img").length
+counter[1].textContent = dropCount;
+const dropAmt = new MutationObserver(mutations => {
+  mutations.forEach(record => {
+    if (record.addedNodes.length > 0) {
+      dropCount = drop.getElementsByTagName("img").length
+      counter[1].textContent = dropCount;
+      // console.log('drop +');
+    }
+    if (record.removedNodes.length > 0) {
+      dropCount = drop.getElementsByTagName("img").length
+      counter[1].textContent = dropCount;
+      // console.log('drop -');
+    }
+  })
+})
+
+dropAmt.observe(drop, {
+  childList: true
+})
+
 
 // 

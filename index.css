@@ -123,16 +123,20 @@ img {
   position: relative;
 }
 
-#deck span {
+#deck img {
+  margin-top: -10px;
+}
+
+#drop {
+  position: relative;
+}
+
+.counter {
   background-color: darkolivegreen;
   position: absolute;
   width: 100%;
   bottom: 0px;
   text-align: center;
-}
-
-#deck img {
-  margin-top: -10px;
 }
 
 .blasted {
