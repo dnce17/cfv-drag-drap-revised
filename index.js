@@ -10,6 +10,7 @@ for (const filled of fill) {
   filled.addEventListener('dragstart', dragStart);
   filled.addEventListener('dragend', dragEnd);
   filled.addEventListener('click', tap);
+  filled.addEventListener('click', blast);
 }
 
 // Loop through empty boxes and add listeners
@@ -24,6 +25,9 @@ function dragStart() {
   // console.log('start')
   if (this.classList.toggle('tap')) {
     this.classList.toggle('tap')
+  }
+  if (this.classList.contains('blasted')) {
+    this.classList.remove('blasted');
   }
   setTimeout(() => (this.className = 'invisible'), 0);
 }
@@ -79,25 +83,33 @@ function tap() {
         this.className += ' tap';
       } else {
         this.classList.toggle('tap');
-        console.log('works');
       }
     }
   }
 }
-// the error: after removing all the cards and putting it back; the span tag is not the zero
-// element --> math.floor will only round down, so it will pick the span constantly
+
+function blast() {
+  if (damage.contains(this)) {
+    if (this.classList.contains('blasted') == false) {
+      this.className += ' blasted';
+    } else {
+      this.classList.toggle('blasted');
+    }
+  }
+}
+
 var imgAmt = deck.getElementsByTagName("img").length;
 deck.addEventListener('click', draw);
 function draw() {
   // if (imgAmt == 0) {
   //   return;
   // }
-    var randCard = Math.floor(Math.random() * imgAmt)
-    if (this.children[randCard].getAttribute('draggable')) {
-      hand.appendChild(this.children[randCard]);
-      // imgAmt--;
-      // deckCount.textContent = imgAmt;
-    }
+  var randCard = Math.floor(Math.random() * imgAmt)
+  if (this.children[randCard].getAttribute('draggable')) {
+    hand.appendChild(this.children[randCard]);
+    // imgAmt--;
+    // deckCount.textContent = imgAmt;
+  }
 }
 
 deckCount.textContent = imgAmt;

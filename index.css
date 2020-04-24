@@ -13,8 +13,8 @@
 }
 
 img {
-  width: 130px;
-  height: auto;
+  width: 100px;
+  height: 148px;
 }
 
 #duel_area {
@@ -24,8 +24,8 @@ img {
   border: 2px blue solid;
   grid-gap: 5px;
   padding: 5px;
-  grid-template-columns: 220px repeat(3, 250px) 160px;
-  grid-template-rows: repeat(2, 250px);
+  grid-template-columns: 170px repeat(3, 170px) 120px;
+  grid-template-rows: repeat(2, 180px);
   grid-template-areas: "damage RC_1 VC RC_5 deck"
                        "damage RC_2 RC_3 RC_4 drop";
 }
@@ -91,7 +91,7 @@ img {
 #duel_area #damage .fill {
   position: relative; 
   cursor: pointer;
-  margin-bottom: -125px;
+  margin-bottom: -105px;
 }
 
 #hand_container {
@@ -126,7 +126,22 @@ img {
 #deck span {
   background-color: darkolivegreen;
   position: absolute;
-  width: 160px;
+  width: 100%;
   bottom: 0px;
   text-align: center;
 }
+
+#deck img {
+  margin-top: -10px;
+}
+
+.blasted {
+  content: url("https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/237200/328448/vanguardsleevelogo__73443.1519959137.jpg?c=2&imbypass=on");
+  width: 100px;
+  height: 148px;
+  border-radius: 5px;
+}
+
+/* Credits
+--> for learning about "content" : 
+https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-using-css */
