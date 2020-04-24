@@ -20,7 +20,6 @@ for (const empty of empties) {
   empty.addEventListener('drop', dragDrop);
 }
 
-
 function dragStart() {
   // console.log('start')
   if (this.classList.toggle('tap')) {
@@ -61,8 +60,12 @@ function dragDrop() {
   // console.log('drop');
   this.className = 'empty';
   for (const filled of fill) {
-    if (filled.classList.contains('invisible')) {
+    if (this.getAttribute('id') == 'deck' && filled.classList.contains('invisible')) {
+      this.insertBefore(filled, this.lastElementChild);
+    } else if (filled.classList.contains('invisible')) {
       this.append(filled);
+      //the line here works - this is my hope
+      // this.insertBefore(filled, this.lastElementChild);
     }
   }
 }
@@ -81,36 +84,36 @@ function tap() {
     }
   }
 }
+// the error: after removing all the cards and putting it back; the span tag is not the zero
+// element --> math.floor will only round down, so it will pick the span constantly
 var imgAmt = deck.getElementsByTagName("img").length;
 deck.addEventListener('click', draw);
 function draw() {
-  if (imgAmt == 0) {
-    return;
-  } else {
-    // console.log('card drawed');
+  // if (imgAmt == 0) {
+  //   return;
+  // }
     var randCard = Math.floor(Math.random() * imgAmt)
     if (this.children[randCard].getAttribute('draggable')) {
-      console.log('idk');
       hand.appendChild(this.children[randCard]);
-      imgAmt--;
+      // imgAmt--;
+      // deckCount.textContent = imgAmt;
     }
-  }
 }
 
-// deckCount.textContent = imgAmt;
-// const deckAmt = new MutationObserver(mutations => {
-//   mutations.forEach(record => {
-//     if (record.addedNodes.length > 0) {
-//       imgAmt += record.addedNodes.length;
-//       deckCount.textContent = imgAmt;
-//     }
-//     if (record.removedNodes.length > 0) {
-//       imgAmt -= record.removedNodes.length;
-//       deckCount.textContent = imgAmt;
-//     }
-//   })
-// })
+deckCount.textContent = imgAmt;
+const deckAmt = new MutationObserver(mutations => {
+  mutations.forEach(record => {
+    if (record.addedNodes.length > 0) {
+      imgAmt = deck.getElementsByTagName("img").length;
+      deckCount.textContent = imgAmt;
+    }
+    if (record.removedNodes.length > 0) {
+      imgAmt = deck.getElementsByTagName("img").length;
+      deckCount.textContent = imgAmt;
+    }
+  })
+})
 
-// deckAmt.observe(deck, {
-//   childList: true
-// })
+deckAmt.observe(deck, {
+  childList: true
+})

@@ -113,7 +113,7 @@ img {
   flex-direction: column-reverse;
 }
 
-#damage div {
+#damage .align_purposes {
   /* background-color: green; */
   width: 200px;
   height: 400px;
