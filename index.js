@@ -1,4 +1,4 @@
-const fill = document.querySelectorAll('.fill');
+var fill = document.querySelectorAll('.fill');
 const empties = document.querySelectorAll('.empty');
 const damage = document.querySelector('#damage');
 const deck = document.querySelector('#deck');
@@ -179,6 +179,12 @@ damageAmt.observe(damage, {
 searchBut.addEventListener('click', deckSearch);
 
 function deckSearch() {
+  if (searchBut.classList.contains('over') == false) {
+    searchBut.classList.toggle('over');
+  } else {
+    searchBut.classList.toggle('over');
+  }
+
   if (searchHolder.classList.contains('disappear')) {
     searchHolder.classList.toggle('disappear');
     // console.log('if');
@@ -190,6 +196,7 @@ function deckSearch() {
         searchHolder.appendChild(cln);
       }
     }
+    evtToNew(searchHolder);
   } else {
     // console.log('else');
     searchHolder.classList.toggle('disappear');
@@ -204,13 +211,56 @@ function deckSearch() {
 function remove() {
   if (searchHolder.contains(this)) {
     // console.log('no poop');
-    searchHolder.removeChild(this);
-    for (var i = 0; i < deck.childElementCount; i++) {
-      if (this.src == deck.children[i].src) {
-        console.log('a match! So removed!');
-        deck.removeChild(deck.children[i]);
-        break;
-      }
+    hand.appendChild(this);
+    // for (var i = 0; i < deck.childElementCount; i++) {
+    //   if (this.src == deck.children[i].src) {
+    //     // console.log('a match! So removed!');
+    //     deck.removeChild(deck.children[i]);
+    //     break;
+    //   }
+    // }
+  }
+}
+
+function evtToNew(target) {
+  fill = document.querySelectorAll('.fill');
+  for (const filled of fill) {
+    if (target.contains(filled)) {
+      addEvt(filled);
     }
   }
 }
+
+function addEvt(target) {
+  target.addEventListener('dragstart', dragStart);
+  target.addEventListener('dragend', dragEnd);
+  target.addEventListener('click', tap);
+  target.addEventListener('click', blast);
+}
+
+// Issue here: I think it is fixed; check before putting it on github: CHECKED!! hopefully...
+const searchCont = new MutationObserver(mutations => {
+  mutations.forEach(record => {
+    if (record.addedNodes.length > 0) {
+      // console.log('drop +');
+    }
+    if (record.removedNodes.length > 0) {
+      if (searchBut.classList.contains('over') == false) {
+        console.log('erss');
+      } else {
+        console.log('drop -');
+        const removed = record.removedNodes[0];
+        for (var i = 0; i < deck.childElementCount; i++) {
+          if (removed.src == deck.children[i].src) {
+            deck.removeChild(deck.children[i]);
+            break;
+          }
+        }
+      }
+    }
+  })
+})
+
+searchCont.observe(searchHolder, {
+  childList: true
+})
