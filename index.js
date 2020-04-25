@@ -3,9 +3,10 @@ const empties = document.querySelectorAll('.empty');
 const damage = document.querySelector('#damage');
 const deck = document.querySelector('#deck');
 const hand = document.querySelector('#hand');
-// const deckCount = document.querySelector('.counter');
 const counter = document.querySelectorAll('.counter');
 const drop = document.querySelector('#drop');
+const searchBut = document.querySelector('.deck_search');
+const searchHolder = document.querySelector('.search_container');
 
 // Fill listeners
 for (const filled of fill) {
@@ -174,5 +175,42 @@ damageAmt.observe(damage, {
   childList: true
 })
 
-
 // 
+searchBut.addEventListener('click', deckSearch);
+
+function deckSearch() {
+  if (searchHolder.classList.contains('disappear')) {
+    searchHolder.classList.toggle('disappear');
+    // console.log('if');
+    for (const child of deck.children) {
+      if (child.getAttribute('draggable')) {
+        // console.log(child);
+        var cln = child.cloneNode(true);
+        cln.addEventListener('click', remove);
+        searchHolder.appendChild(cln);
+      }
+    }
+  } else {
+    // console.log('else');
+    searchHolder.classList.toggle('disappear');
+    var card = searchHolder.lastElementChild;
+    while (card) {
+      searchHolder.removeChild(card);
+      card = searchHolder.lastElementChild;
+    }
+  }
+}
+
+function remove() {
+  if (searchHolder.contains(this)) {
+    // console.log('no poop');
+    searchHolder.removeChild(this);
+    for (var i = 0; i < deck.childElementCount; i++) {
+      if (this.src == deck.children[i].src) {
+        console.log('a match! So removed!');
+        deck.removeChild(deck.children[i]);
+        break;
+      }
+    }
+  }
+}

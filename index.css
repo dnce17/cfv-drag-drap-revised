@@ -1,5 +1,13 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
 }
 
 #container {
@@ -21,7 +29,6 @@ img {
   position: relative;
   display: grid;
   background-color: #3e2723;
-  border: 2px blue solid;
   grid-gap: 5px;
   padding: 5px;
   grid-template-columns: 170px repeat(3, 170px) 120px;
@@ -98,7 +105,7 @@ img {
 #hand_container {
   width: 800px;
   height: 200px;
-  border: 2px solid black;
+  outline: 2px solid violet;
 }
 
 #hand_container .empty {
@@ -121,22 +128,13 @@ img {
   height: 400px;
 } */
 
-#deck {
+#deck, #drop {
   position: relative;
 }
 
-#deck img {
+#deck img, #drop img {
   margin-top: -10px;
 }
-
-#drop {
-  position: relative;
-}
-
-#drop img {
-  margin-top: -10px;
-}
-
 
 .counter {
   background-color: darkolivegreen;
@@ -156,3 +154,27 @@ img {
 /* Credits
 --> for learning about "content" : 
 https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-using-css */
+
+.search_container {
+  background-color: rgba(0, 0, 200, 0.5);
+  position: absolute;
+  width: 700px;
+  height: 300px;
+  top: 0;
+}
+
+.disappear {
+  opacity: 0;
+  z-index: -1;
+}
+
+.deck_search {
+  outline: none;
+  background-color: rgba(0, 200, 0, 0.7);
+  border: 2px solid saddlebrown;
+  width: 35px;
+  height: 30px;
+  border-radius: 40%;
+  position: relative;
+  right: -10px;
+}
