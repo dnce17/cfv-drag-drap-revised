@@ -176,8 +176,10 @@ damageAmt.observe(damage, {
   childList: true
 })
 
-// 
+// Added the drop search!! Gotta fix the counter and make the cards disappear
+// when cards are taken out of the drop
 search.addEventListener('click', searcher);
+drop.addEventListener('click', searcher);
 
 function searcher() {
   if (this.classList.contains('over') == false) {
@@ -188,7 +190,11 @@ function searcher() {
   
   if (searchHolder.classList.contains('disappear')) {
     searchHolder.classList.toggle('disappear');
-    on(searchHolder, deck);
+    if (this.classList.contains('deck_btn')) {
+      on(searchHolder, deck);
+    } else if (this.id == 'drop') {
+      on(searchHolder, drop);
+    }
     evtToNew(searchHolder);
   } 
 }
@@ -238,7 +244,11 @@ function off(target) {
 exit.addEventListener('click', close);
 function close() {
   off(searchHolder);
-  search.classList.toggle('over');
+  if (search.classList.contains('over')) {
+    search.classList.toggle('over');
+  } else if (drop.classList.contains('over')) {
+    drop.classList.toggle('over');
+  }
 }
 
 function addEvt(target) {
@@ -248,8 +258,7 @@ function addEvt(target) {
   target.addEventListener('click', blast);
 }
 
-// Issue here: I think it is fixed; check before putting it on github: CHECKED!! hopefully...
-const searchCont = new MutationObserver(mutations => {
+const deckSearch = new MutationObserver(mutations => {
   mutations.forEach(record => {
     // I might be sth here. Maybe if we put back the item we took out in search cont
     // if (record.addedNodes.length > 0) {
@@ -257,9 +266,9 @@ const searchCont = new MutationObserver(mutations => {
     // }
     if (record.removedNodes.length > 0) {
       if (search.classList.contains('over') == false) {
-        console.log('erss');
+        // console.log('erss');
       } else {
-        console.log('drop -');
+        // console.log('drop -');
         const removed = record.removedNodes[0];
         for (var i = 0; i < deck.childElementCount; i++) {
           if (removed.src == deck.children[i].src) {
@@ -272,44 +281,29 @@ const searchCont = new MutationObserver(mutations => {
   })
 })
 
-searchCont.observe(searchHolder, {
+deckSearch.observe(searchHolder, {
   childList: true
 })
 
-// New stuff
+const dropSearch = new MutationObserver(mutations => {
+  mutations.forEach(record => {
+    if (record.removedNodes.length > 0) {
+      if (drop.classList.contains('over') == false) {
+        // console.log('erss');
+      } else {
+        // console.log('drop -');
+        const removed = record.removedNodes[0];
+        for (var i = 0; i < drop.childElementCount; i++) {
+          if (removed.src == drop.children[i].src) {
+            drop.removeChild(drop.children[i]);
+            break;
+          }
+        }
+      }
+    }
+  })
+})
 
-// drop.addEventListener('click', dropSearch);
-
-// function dropSearch() {
-  
-//   if (this.classList.contains('over') == false) {
-//     this.classList.toggle('over');
-//   } else {
-//     this.classList.toggle('over');
-//   }
-
-//   if (searchHolder.classList.contains('disappear')) {
-//     searchHolder.classList.toggle('disappear');
-//     // console.log('if');
-//     for (const child of this.children) {
-//       if (child.getAttribute('draggable')) {
-//         // console.log(child);
-//         var cln = child.cloneNode(true);
-//         cln.addEventListener('click', remove);
-//         searchHolder.appendChild(cln);
-//       }
-//     }
-//     evtToNew(searchHolder);
-//   } else {
-//     // console.log('else');
-//     searchHolder.classList.toggle('disappear');
-//     var card = searchHolder.lastElementChild;
-//     while (card) {
-//       searchHolder.removeChild(card);
-//       card = searchHolder.lastElementChild;
-//     }
-//   }
-// }
-
-//
-
+dropSearch.observe(searchHolder, {
+  childList: true
+})

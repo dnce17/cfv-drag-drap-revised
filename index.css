@@ -190,6 +190,7 @@ https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-us
   height: 30px;
   border-radius: 45%;
   position: relative;
+  z-index: -1;
 }
 
 .deck_btn {
@@ -202,5 +203,4 @@ https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-us
 
 .over {
   box-shadow: 0 0 10pt 2pt orange;
-  z-index: -1;
 }
