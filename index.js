@@ -5,7 +5,7 @@ const deck = document.querySelector('#deck');
 const hand = document.querySelector('#hand');
 const counter = document.querySelectorAll('.counter');
 const drop = document.querySelector('#drop');
-const searchBut = document.querySelector('.deck_search');
+const searchBut = document.querySelector('.search');
 const searchHolder = document.querySelector('.search_container');
 
 // Fill listeners
@@ -179,10 +179,10 @@ damageAmt.observe(damage, {
 searchBut.addEventListener('click', deckSearch);
 
 function deckSearch() {
-  if (searchBut.classList.contains('over') == false) {
-    searchBut.classList.toggle('over');
+  if (this.classList.contains('over') == false) {
+    this.classList.toggle('over');
   } else {
-    searchBut.classList.toggle('over');
+    this.classList.toggle('over');
   }
 
   if (searchHolder.classList.contains('disappear')) {
@@ -201,7 +201,12 @@ function deckSearch() {
     // console.log('else');
     searchHolder.classList.toggle('disappear');
     var card = searchHolder.lastElementChild;
+    // console.log(card);
     while (card) {
+      if (card.tagName == 'BUTTON') {
+        console.log('the button')
+        break;
+      }
       searchHolder.removeChild(card);
       card = searchHolder.lastElementChild;
     }
@@ -264,3 +269,38 @@ const searchCont = new MutationObserver(mutations => {
 searchCont.observe(searchHolder, {
   childList: true
 })
+
+// New stuff
+
+// drop.addEventListener('click', dropSearch);
+
+// function dropSearch() {
+  
+//   if (this.classList.contains('over') == false) {
+//     this.classList.toggle('over');
+//   } else {
+//     this.classList.toggle('over');
+//   }
+
+//   if (searchHolder.classList.contains('disappear')) {
+//     searchHolder.classList.toggle('disappear');
+//     // console.log('if');
+//     for (const child of this.children) {
+//       if (child.getAttribute('draggable')) {
+//         // console.log(child);
+//         var cln = child.cloneNode(true);
+//         cln.addEventListener('click', remove);
+//         searchHolder.appendChild(cln);
+//       }
+//     }
+//     evtToNew(searchHolder);
+//   } else {
+//     // console.log('else');
+//     searchHolder.classList.toggle('disappear');
+//     var card = searchHolder.lastElementChild;
+//     while (card) {
+//       searchHolder.removeChild(card);
+//       card = searchHolder.lastElementChild;
+//     }
+//   }
+// }

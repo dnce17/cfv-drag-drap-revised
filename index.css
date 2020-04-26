@@ -168,23 +168,39 @@ https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-us
   flex-wrap: wrap;
 }
 
+.exit {
+  position: absolute;
+  bottom: 0;
+  width: 35px;
+  height: 20px;
+}
+
 .disappear {
   opacity: 0;
   z-index: -1;
 }
 
-.deck_search {
+.search {
   outline: none;
-  background-color: rgba(0, 200, 0, 0.7);
+  /* background-color: #ffb7c5; */
+  background-color: rgba(0, 255, 0, 1);
   border: 3px solid saddlebrown;
   line-height: 24px;
   width: 35px;
   height: 30px;
-  border-radius: 40%;
+  border-radius: 45%;
   position: relative;
+}
+
+.deck_btn {
   right: -10px;
 }
 
+/* .drop_btn {
+  top: -10px;
+} */
+
 .over {
   box-shadow: 0 0 10pt 2pt orange;
+  /* z-index: -1; */
 }
