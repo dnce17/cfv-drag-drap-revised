@@ -1,3 +1,4 @@
+const from = document.querySelector('.from');
 var fill = document.querySelectorAll('.fill');
 const empties = document.querySelectorAll('.empty');
 const damage = document.querySelector('#damage');
@@ -191,8 +192,10 @@ function searcher() {
   if (searchHolder.classList.contains('disappear')) {
     searchHolder.classList.toggle('disappear');
     if (this.classList.contains('deck_btn')) {
+      from.textContent = 'Deck';
       on(searchHolder, deck);
     } else if (this.id == 'drop') {
+      from.textContent = 'Drop';
       on(searchHolder, drop);
     }
     evtToNew(searchHolder);
