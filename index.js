@@ -5,7 +5,8 @@ const deck = document.querySelector('#deck');
 const hand = document.querySelector('#hand');
 const counter = document.querySelectorAll('.counter');
 const drop = document.querySelector('#drop');
-const searchBut = document.querySelector('.search');
+const search = document.querySelector('.search');
+const exit = document.querySelector('.exit');
 const searchHolder = document.querySelector('.search_container');
 
 // Fill listeners
@@ -176,39 +177,29 @@ damageAmt.observe(damage, {
 })
 
 // 
-searchBut.addEventListener('click', deckSearch);
+search.addEventListener('click', searcher);
 
-function deckSearch() {
+function searcher() {
   if (this.classList.contains('over') == false) {
     this.classList.toggle('over');
   } else {
     this.classList.toggle('over');
   }
-
+  
   if (searchHolder.classList.contains('disappear')) {
     searchHolder.classList.toggle('disappear');
-    // console.log('if');
-    for (const child of deck.children) {
-      if (child.getAttribute('draggable')) {
-        // console.log(child);
-        var cln = child.cloneNode(true);
-        cln.addEventListener('click', remove);
-        searchHolder.appendChild(cln);
-      }
-    }
+    on(searchHolder, deck);
     evtToNew(searchHolder);
-  } else {
-    // console.log('else');
-    searchHolder.classList.toggle('disappear');
-    var card = searchHolder.lastElementChild;
-    // console.log(card);
-    while (card) {
-      if (card.tagName == 'BUTTON') {
-        console.log('the button')
-        break;
-      }
-      searchHolder.removeChild(card);
-      card = searchHolder.lastElementChild;
+  } 
+}
+
+function on(target, origin) {
+  for (const child of origin.children) {
+    if (child.getAttribute('draggable')) {
+      // console.log(child);
+      var cln = child.cloneNode(true);
+      cln.addEventListener('click', remove);
+      target.appendChild(cln);
     }
   }
 }
@@ -217,13 +208,6 @@ function remove() {
   if (searchHolder.contains(this)) {
     // console.log('no poop');
     hand.appendChild(this);
-    // for (var i = 0; i < deck.childElementCount; i++) {
-    //   if (this.src == deck.children[i].src) {
-    //     // console.log('a match! So removed!');
-    //     deck.removeChild(deck.children[i]);
-    //     break;
-    //   }
-    // }
   }
 }
 
@@ -236,6 +220,27 @@ function evtToNew(target) {
   }
 }
 
+function off(target) {
+  // console.log('else');
+  target.classList.toggle('disappear');
+  var card = target.lastElementChild;
+  // console.log(card);
+  while (card) {
+    if (card.tagName == 'BUTTON') {
+      // console.log('the button')
+      break;
+    }
+    target.removeChild(card);
+    card = target.lastElementChild;
+  }
+}
+
+exit.addEventListener('click', close);
+function close() {
+  off(searchHolder);
+  search.classList.toggle('over');
+}
+
 function addEvt(target) {
   target.addEventListener('dragstart', dragStart);
   target.addEventListener('dragend', dragEnd);
@@ -246,11 +251,12 @@ function addEvt(target) {
 // Issue here: I think it is fixed; check before putting it on github: CHECKED!! hopefully...
 const searchCont = new MutationObserver(mutations => {
   mutations.forEach(record => {
-    if (record.addedNodes.length > 0) {
-      // console.log('drop +');
-    }
+    // I might be sth here. Maybe if we put back the item we took out in search cont
+    // if (record.addedNodes.length > 0) {
+    //   // console.log('drop +');
+    // }
     if (record.removedNodes.length > 0) {
-      if (searchBut.classList.contains('over') == false) {
+      if (search.classList.contains('over') == false) {
         console.log('erss');
       } else {
         console.log('drop -');
@@ -304,3 +310,6 @@ searchCont.observe(searchHolder, {
 //     }
 //   }
 // }
+
+//
+

@@ -202,5 +202,5 @@ https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-us
 
 .over {
   box-shadow: 0 0 10pt 2pt orange;
-  /* z-index: -1; */
+  z-index: -1;
 }
