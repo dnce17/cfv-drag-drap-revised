@@ -12,6 +12,7 @@ body {
 
 #container {
   flex-direction: column;
+  position: relative;
 }
 
 .center {
@@ -215,4 +216,68 @@ https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-us
 #drop:hover, .deck_btn:hover, .soul:hover {
   cursor: pointer;
   /* box-shadow: 0 0 10pt 2pt orange; */
+}
+
+/* To make decks card face down but i dont want to use it yet */
+/* #deck img {
+  content: url("https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/237200/328448/vanguardsleevelogo__73443.1519959137.jpg?c=2&imbypass=on");
+} */
+
+/* notes
+soul charge (from anywhere)
+locked cards
+put to the bottom of the deck */
+
+.options {
+  background-color: darkolivegreen;
+  box-shadow: 0 8px rgba(85, 107, 47, 0.74);
+  border-radius: 10px;
+  position: relative;
+  width: 500px;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* .actions {
+  position: relative;
+  background-color: gray;
+  border-radius: 30px;
+  width: 30px;
+  height: 10px;
+} */
+
+/* .options::before {
+  content: '';
+  position: absolute;
+  background-color: gray;
+  width: 50px;
+  height: 10px;
+  top: 0;
+} */
+
+
+.switch {
+  color: purple;
+  text-align: center;
+  position: relative;
+  background-color: orchid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  box-shadow: 0 8px purple;
+  border-radius: 5px;
+  user-select: none;
+  width: 100px;
+  height: 50px;
+  transition: all 0.3s ease;
+}
+
+.pressed {
+  box-shadow: 0 0px purple;
+  top: 8px;
+  color: white;
 }

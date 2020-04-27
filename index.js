@@ -20,6 +20,8 @@ for (const filled of fill) {
   filled.addEventListener('click', blast);
 }
 
+//NEW
+
 // Loop through empty boxes and add listeners
 for (const empty of empties) {
   empty.addEventListener('dragover', dragOver);
@@ -77,8 +79,6 @@ function dragDrop() {
       this.insertBefore(filled, this.lastElementChild);
     } else if (filled.classList.contains('invisible')) {
       this.append(filled);
-      //the line here works - this is my hope
-      // this.insertBefore(filled, this.lastElementChild);
     }
   }
 }
@@ -110,14 +110,9 @@ function blast() {
 var deckCount = deck.getElementsByTagName("img").length;
 deck.addEventListener('click', draw);
 function draw() {
-  // if (deckCount == 0) {
-  //   return;
-  // }
   var randCard = Math.floor(Math.random() * deckCount)
   if (this.children[randCard].getAttribute('draggable')) {
     hand.appendChild(this.children[randCard]);
-    // deckCount--;
-    // deckCount.textContent = deckCount;
   }
 }
 
@@ -362,3 +357,32 @@ const soulSearch = new MutationObserver(mutations => {
 soulSearch.observe(searchHolder, {
   childList: true
 })
+
+// NEW
+const buttons = document.querySelectorAll('.switch');
+for (const btn of buttons) {
+  console.log(btn);
+  btn.addEventListener('click', press);
+  // btn.addEventListener('click', lock);
+}
+
+function press() {
+  if (this.classList.contains('pressed')) {
+    this.classList.toggle('pressed');
+  } else {
+    this.className += ' pressed';
+  }
+  for (const other of buttons) {
+    if (other != this && other.classList.contains('pressed')) {
+      other.classList.toggle('pressed');
+    }
+  }
+}
+
+// function lock() {
+//   if (this.classList.contains('blasted') == false) {
+//     this.className += ' blasted';
+//   } else {
+//     this.classList.toggle('blasted');
+//   }
+// }
