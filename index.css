@@ -123,23 +123,26 @@ img {
   position: relative;
 }
 
-/* #damage .align_purposes {
-  background-color: green;
-  width: 200px;
-  height: 400px;
-} */
-
-#deck, #drop {
+#deck, #drop, #VC {
   position: relative;
 }
 
-#deck img, #drop img {
+#deck img, #drop img, #VC img {
   margin-top: -10px;
 }
 
 .counter {
   background-color: darkolivegreen;
   position: absolute;
+  width: 100%;
+  bottom: 0px;
+  text-align: center;
+}
+
+.soul {
+  position: absolute;
+  bottom: 0;
+  background-color: cornflowerblue;
   width: 100%;
   bottom: 0px;
   text-align: center;
@@ -197,6 +200,7 @@ https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-us
   width: 35px;
   height: 30px;
   border-radius: 45%;
+  /* write this down: position determine the stacking of thing */
   /* position: relative; */
 }
 
@@ -206,4 +210,9 @@ https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-us
 
 .over {
   box-shadow: 0 0 10pt 2pt orange;
+}
+
+#drop:hover, .deck_btn:hover, .soul:hover {
+  cursor: pointer;
+  /* box-shadow: 0 0 10pt 2pt orange; */
 }

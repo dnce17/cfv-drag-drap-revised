@@ -9,6 +9,8 @@ const drop = document.querySelector('#drop');
 const search = document.querySelector('.search');
 const exit = document.querySelector('.exit');
 const searchHolder = document.querySelector('.search_container');
+const vanguard = document.querySelector('#VC');
+const soul = document.querySelector('.soul');
 
 // Fill listeners
 for (const filled of fill) {
@@ -158,6 +160,29 @@ dropAmt.observe(drop, {
   childList: true
 })
 
+var soulCount = vanguard.getElementsByTagName("img").length - 1;
+soul.textContent = 'Soul: ' + soulCount;
+const soulAmt = new MutationObserver(mutations => {
+  mutations.forEach(record => {
+    if (record.addedNodes.length > 0) {
+      soulCount = vanguard.getElementsByTagName("img").length - 1;
+      soul.textContent = 'Soul: ' + soulCount;
+    }
+    if (record.removedNodes.length > 0) {
+      soulCount = vanguard.getElementsByTagName("img").length - 1;
+      if (soulCount + 1 == 0) {
+        return;
+      } else {
+        soul.textContent = 'Soul: ' + soulCount;
+      }
+    }
+  })
+})
+
+soulAmt.observe(vanguard, {
+  childList: true
+})
+
 var damageCount = damage.getElementsByTagName("img").length
 counter[0].textContent = damageCount;
 const damageAmt = new MutationObserver(mutations => {
@@ -177,10 +202,9 @@ damageAmt.observe(damage, {
   childList: true
 })
 
-// Added the drop search!! Gotta fix the counter and make the cards disappear
-// when cards are taken out of the drop
 search.addEventListener('click', searcher);
 drop.addEventListener('click', searcher);
+soul.addEventListener('click', searcher);
 
 function searcher() {
   if (this.classList.contains('over') == false) {
@@ -188,7 +212,7 @@ function searcher() {
   } else {
     this.classList.toggle('over');
   }
-  
+
   if (searchHolder.classList.contains('disappear')) {
     searchHolder.classList.toggle('disappear');
     if (this.classList.contains('deck_btn')) {
@@ -197,9 +221,12 @@ function searcher() {
     } else if (this.id == 'drop') {
       from.textContent = 'Drop';
       on(searchHolder, drop);
+    } else {
+      from.textContent = 'Soul';
+      on(searchHolder, vanguard);
     }
     evtToNew(searchHolder);
-  } 
+  }
 }
 
 function on(target, origin) {
@@ -251,6 +278,8 @@ function close() {
     search.classList.toggle('over');
   } else if (drop.classList.contains('over')) {
     drop.classList.toggle('over');
+  } else if (soul.classList.contains('over')) {
+    soul.classList.toggle('over');
   }
 }
 
@@ -308,5 +337,28 @@ const dropSearch = new MutationObserver(mutations => {
 })
 
 dropSearch.observe(searchHolder, {
+  childList: true
+})
+
+const soulSearch = new MutationObserver(mutations => {
+  mutations.forEach(record => {
+    if (record.removedNodes.length > 0) {
+      if (soul.classList.contains('over') == false) {
+        // console.log('erss');
+      } else {
+        // console.log('drop -');
+        const removed = record.removedNodes[0];
+        for (var i = 0; i < vanguard.childElementCount; i++) {
+          if (removed.src == vanguard.children[i].src) {
+            vanguard.removeChild(vanguard.children[i]);
+            break;
+          }
+        }
+      }
+    }
+  })
+})
+
+soulSearch.observe(searchHolder, {
   childList: true
 })
