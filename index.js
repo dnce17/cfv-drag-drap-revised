@@ -230,7 +230,14 @@ function on(target, origin) {
       // console.log(child);
       var cln = child.cloneNode(true);
       cln.addEventListener('click', remove);
-      target.appendChild(cln);
+
+      if (origin == vanguard && child == origin.lastElementChild) {
+        console.log(origin.lastElementChild);
+        return;
+      } else {
+        target.appendChild(cln);
+      }
+
     }
   }
 }

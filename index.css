@@ -234,7 +234,7 @@ put to the bottom of the deck */
   border-radius: 10px;
   position: relative;
   width: 500px;
-  height: 100px;
+  height: 75px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -258,6 +258,10 @@ put to the bottom of the deck */
   top: 0;
 } */
 
+.options:hover .switch {
+  opacity: 1;
+}
+
 
 .switch {
   color: purple;
@@ -271,9 +275,14 @@ put to the bottom of the deck */
   box-shadow: 0 8px purple;
   border-radius: 5px;
   user-select: none;
-  width: 100px;
-  height: 50px;
-  transition: all 0.3s ease;
+  width: 85px;
+  height: 25px;
+  opacity: 0;
+  transition: all 0.1s ease;
+}
+
+.on_bottom {
+  width: 150px;
 }
 
 .pressed {
