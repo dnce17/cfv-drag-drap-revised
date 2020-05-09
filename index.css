@@ -1,292 +1,82 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  /* margin: 0; */
+/* Dragging Purposes ONLY */
+.invisible {
+  display: none;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
+.hovered {
+  border: 2px solid orange;
 }
 
-#container {
-  flex-direction: column;
-  position: relative;
-}
-
+/* General Use */
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+/**/
+
+.wrap {
+  flex-direction: column;
+}
 
 img {
   width: 100px;
   height: 148px;
-  border-radius: 5px;
+  vertical-align: bottom;
 }
 
-#duel_area {
-  position: relative;
-  display: grid;
+.field {
   background-color: #3e2723;
+  display: grid;
   grid-gap: 5px;
-  padding: 5px;
   grid-template-columns: 170px repeat(3, 170px) 120px;
   grid-template-rows: repeat(2, 180px);
   grid-template-areas: "damage RC_1 VC RC_5 deck"
                        "damage RC_2 RC_3 RC_4 drop";
+  padding: 5px;
 }
 
-#duel_area .empty {
+.circle {
   background-color: beige;
   border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
 }
 
-.empty:nth-of-type(1) {
+.circle:nth-of-type(1) {
   grid-area: damage;
 }
-.empty:nth-of-type(2) {
+.circle:nth-of-type(2) {
   grid-area: RC_1;
 }
-.empty:nth-of-type(3) {
+.circle:nth-of-type(3) {
   grid-area: VC;
 }
-.empty:nth-of-type(4) {
+.circle:nth-of-type(4) {
   grid-area: RC_5;
 }
-.empty:nth-of-type(5) {
+.circle:nth-of-type(5) {
   grid-area: deck;
 }
-.empty:nth-of-type(6) {
+.circle:nth-of-type(6) {
   grid-area: RC_2;
 }
-.empty:nth-of-type(7) {
+.circle:nth-of-type(7) {
   grid-area: RC_3;
 }
-.empty:nth-of-type(8) {
+.circle:nth-of-type(8) {
   grid-area: RC_4;
 }
-.empty:nth-of-type(9) {
+.circle:nth-of-type(9) {
   grid-area: drop;
 }
 
-#duel_area .tap {
-  transform: rotate(-90deg);
-}
-
-.hovered {
-  box-shadow: 0 0 10pt 2pt red;
-}
-
-.invisible {
-  display: none;
-}
-
-.fill {
-  position: relative; 
-  cursor: pointer;
-}
-
-#duel_area .fill {
-  position: absolute; 
-  cursor: pointer;
-}
-
-#duel_area #damage .fill {
-  position: relative; 
-  cursor: pointer;
-  margin-bottom: -105px;
-  top: -65px;
-}
-
-#hand_container {
-  width: 800px;
-  height: 200px;
-  outline: 2px solid violet;
-}
-
-#hand_container .empty {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 800px;
-  height: 200px;
-}
-
-#damage {
-  display: flex;
-  flex-direction: column-reverse;
-  position: relative;
-}
-
-#deck, #drop, #VC {
-  position: relative;
-}
-
-#deck img, #drop img, #VC img {
-  margin-top: -10px;
-}
-
-.counter {
-  background-color: darkolivegreen;
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
-  text-align: center;
-}
-
-.soul {
-  position: absolute;
-  bottom: 0;
-  background-color: cornflowerblue;
-  width: 100%;
-  bottom: 0px;
-  text-align: center;
-}
-
-.blasted {
-  content: url("https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/237200/328448/vanguardsleevelogo__73443.1519959137.jpg?c=2&imbypass=on");
+.unit-ctnr {
+  border: 1px solid blue;
   width: 100px;
   height: 148px;
 }
 
-/* Credits
---> for learning about "content" : 
-https://stackoverflow.com/questions/12142386/replacing-an-image-in-an-img-tag-using-css */
-
-.search_container {
-  background-color: rgba(0, 0, 200, 0.5);
-  border-radius: 10px;
-  padding-top: 27px;
-  padding-bottom: 25px;
-  position: absolute;
-  width: 920px;
-  height: auto;
-  min-height: 400px;
-  top: 0;
-  align-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.from {
-  position: absolute;
-  /* color: #ffb7c5; */
-  color: white;
-  top: 0;
-  font-size: 25px; 
-}
-
-.exit {
-  position: absolute;
-  bottom: 0;
-  width: 35px;
-  height: 20px;
-}
-
-.disappear {
-  opacity: 0;
-  z-index: -1;
-}
-
-.search {
-  outline: none;
-  background-color: rgba(0, 255, 0, 1);
-  border: 3px solid saddlebrown;
-  line-height: 24px;
-  width: 35px;
-  height: 30px;
-  border-radius: 45%;
-  /* write this down: position determine the stacking of thing */
-  /* position: relative; */
-}
-
-.deck_btn {
-  margin-left: 10px;
-}
-
-.over {
-  box-shadow: 0 0 10pt 2pt orange;
-}
-
-#drop:hover, .deck_btn:hover, .soul:hover {
-  cursor: pointer;
-  /* box-shadow: 0 0 10pt 2pt orange; */
-}
-
-/* To make decks card face down but i dont want to use it yet */
-/* #deck img {
-  content: url("https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/237200/328448/vanguardsleevelogo__73443.1519959137.jpg?c=2&imbypass=on");
-} */
-
-/* notes
-soul charge (from anywhere)
-locked cards
-put to the bottom of the deck */
-
-.options {
-  background-color: darkolivegreen;
-  box-shadow: 0 8px rgba(85, 107, 47, 0.74);
-  border-radius: 10px;
-  position: relative;
+.hand .circle {
+  background-color: green;
   width: 500px;
-  height: 75px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-/* .actions {
-  position: relative;
-  background-color: gray;
-  border-radius: 30px;
-  width: 30px;
-  height: 10px;
-} */
-
-/* .options::before {
-  content: '';
-  position: absolute;
-  background-color: gray;
-  width: 50px;
-  height: 10px;
-  top: 0;
-} */
-
-.options:hover .switch {
-  opacity: 1;
-}
-
-
-.switch {
-  color: purple;
-  text-align: center;
-  position: relative;
-  background-color: orchid;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  box-shadow: 0 8px purple;
-  border-radius: 5px;
-  user-select: none;
-  width: 85px;
-  height: 25px;
-  opacity: 0;
-  transition: all 0.1s ease;
-}
-
-.on_bottom {
-  width: 150px;
-}
-
-.pressed {
-  box-shadow: 0 0px purple;
-  top: 8px;
-  color: white;
+  padding: 5px 0 5px 0;
 }
