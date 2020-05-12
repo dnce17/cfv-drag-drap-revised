@@ -1,6 +1,5 @@
 const fill = document.querySelectorAll('.fill');
 const circles = document.querySelectorAll('.circle');
-const units = document.querySelectorAll('.unit-ctnr');
 
 for (const card of fill) {
   card.addEventListener('dragstart', dragStart);
@@ -27,7 +26,9 @@ for (const circle of circles) {
 function dragOver(e) {
   e.preventDefault();
   console.log('over');
-  this.className += ' hovered';
+  if (this.classList.contains('hovered') == false) {
+    this.className += ' hovered';
+  }
 }
 
 function dragEnter(e) {

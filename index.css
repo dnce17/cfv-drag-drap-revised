@@ -10,7 +10,7 @@
 }
 
 .hovered {
-  border: 2px solid orange;
+  outline: 2px solid orange;
 }
 
 /* General Use */
@@ -101,4 +101,32 @@ img {
 
 .detail {
   /* background-color: blue; */
+}
+
+.outer-zone {
+  /* border: 5px solid brown; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.g-zone {
+  border: 1px solid red;
+  display: flex;
+  padding: 5px;
+}
+
+.stride__down {
+  border: 1px solid red;
+}
+
+.stride__up {
+  border: 1px solid blue;
+}
+
+.trigger {
+  border: 1px solid red;
+  width: 148px;
+  height: 100px;
 }
