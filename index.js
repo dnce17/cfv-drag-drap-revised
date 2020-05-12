@@ -45,7 +45,8 @@ function dragDrop() {
   this.className = 'circle center';
   for (const card of fill) {
     if (card.classList.contains('invisible')) {
-      this.children[0].appendChild(card);
+      const unitCtnr = this.children[0];
+      unitCtnr.appendChild(card);
     }
   }
 }

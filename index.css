@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 /* Dragging Purposes ONLY */
 .invisible {
   display: none;
@@ -16,12 +22,14 @@
 /**/
 
 .wrap {
+  border: 5px solid pink;
   flex-direction: column;
+  float: left;
 }
 
 img {
-  width: 100px;
-  height: 148px;
+  width: 100%;
+  height: 100%;
   vertical-align: bottom;
 }
 
@@ -39,6 +47,7 @@ img {
 .circle {
   background-color: beige;
   border-radius: 5px;
+  position: relative;
 }
 
 .circle:nth-of-type(1) {
@@ -71,12 +80,25 @@ img {
 
 .unit-ctnr {
   border: 1px solid blue;
-  width: 100px;
-  height: 148px;
+  width: 90px;
+  height: 130px;
 }
 
 .hand .circle {
   background-color: green;
   width: 500px;
   padding: 5px 0 5px 0;
+}
+
+.detail-ctnr {
+  background-color: #66FF99;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 18px;
+  text-align: center;
+}
+
+.detail {
+  /* background-color: blue; */
 }
