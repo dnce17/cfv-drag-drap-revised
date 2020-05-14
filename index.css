@@ -22,6 +22,10 @@
 }
 /**/
 
+.wrap-ctnr {
+  border: 5px solid saddlebrown;
+}
+
 .wrap {
   border: 1px solid pink;
   flex-direction: column;
@@ -79,7 +83,7 @@
 
 .unit-ctnr {
   position: relative;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 90px;
   height: 130px;
 }
@@ -111,10 +115,6 @@ img {
   text-align: center;
 }
 
-.detail {
-  /* background-color: blue; */
-}
-
 .outer-zone {
   /* border: 5px solid brown; */
   width: 100%;
@@ -132,10 +132,6 @@ img {
 .stride__down {
   border: 1px solid red;
 }
-
-/* .stride__down img {
-  content: url('img/backing.png');
-} */
 
 .stride__up {
   border: 1px solid blue;
@@ -164,7 +160,7 @@ img {
   margin-bottom: 5px;
 }
 
-.counter {
+.amount {
   /* background-color: yellow; */
   width: 50%;
   display: flex;
@@ -176,4 +172,29 @@ img {
   border-radius: 30px;
   padding: 5px;
   margin-top: 5px;
+}
+
+.option_ctnr {
+  background-color: skyblue;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 25px;
+  top: -25px;
+  border-radius: 30px;
+}
+
+.option_ctnr img {
+  width: auto;
+  height: 25px;
+}
+
+.trigger .card {
+  transform: rotate(-90deg);
+}
+
+/* JS only */
+.tap {
+  transform: rotate(-90deg);
 }
