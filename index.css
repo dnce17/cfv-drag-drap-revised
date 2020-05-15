@@ -121,6 +121,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  position: relative;
 }
 
 .g-zone {
@@ -143,8 +144,16 @@ img {
 
 .trigger {
   border: 1px solid red;
-  width: 148px;
-  height: 100px;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  width: 100px;
+  height: 148px;
+  position: absolute;
+  right: -100px;
+}
+
+.trigger .card {
+  position: absolute;
 }
 
 .field-ctnr > .circle:first-child, .field-ctnr > .circle:nth-child(2) {
@@ -194,11 +203,6 @@ img {
   height: 25px;
 }
 
-.trigger .card {
-  transform: rotate(-90deg);
-  position: absolute;
-}
-
 .damage {
   transform: rotate(-90deg);
   position: absolute;
@@ -228,4 +232,8 @@ img {
 
 .facedown {
   content: url('img/backing.png');
+}
+
+.upright {
+  transform: rotate(90deg);
 }

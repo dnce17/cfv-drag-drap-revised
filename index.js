@@ -7,9 +7,25 @@ for (const card of fill) {
   card.addEventListener('dragend', dragEnd);
 }
 
-function dragStart() {
-  // console.log('start');
-  resetImg(this)
+// For a reset of classes that may have been added on to card/img (e.g. tap or blast)
+function clsReset(target) {
+  target.className = 'card fill';
+  target.children[0].className = '';
+}
+
+// For zone that inherently are -90 deg - these cards won't have tap
+function upright(target) {
+  const damage = document.querySelector('.damage');
+  const trigger = document.querySelector('.trigger');
+  if (damage.contains(target) || trigger.contains(target)) {
+    target.className += ' upright';
+  }
+}
+
+function dragStart(e) {
+  console.log('start');
+  clsReset(this);
+  upright(this);
   setTimeout(() => (this.className = 'invisible'), 0);
 }
 
@@ -61,11 +77,6 @@ for (const card of fill) {
   card.addEventListener('click', blast);
 }
 
-// Reset Img Class and Other Property When Dragging
-function resetImg(target) {
-  target.children[0].className = '';
-}
-
 // DRAW
 function draw() {
   const deck = document.querySelector('.deck');
@@ -98,11 +109,6 @@ function blast() {
     this.children[0].classList.toggle('facedown');
   }
 }
-
-// CHECKPOINT!!!!
-// function damagePlaced(target) {
-//   target.className += ' tap';
-// }
 
 // TRIGGER
 function triggerEvt() {
