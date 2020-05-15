@@ -137,6 +137,10 @@ img {
   border: 1px solid blue;
 }
 
+.g-zone .card {
+  position: absolute;
+}
+
 .trigger {
   border: 1px solid red;
   width: 148px;
@@ -220,4 +224,8 @@ img {
 /* JS only */
 .tap {
   transform: rotate(-90deg);
+}
+
+.facedown {
+  content: url('img/backing.png');
 }

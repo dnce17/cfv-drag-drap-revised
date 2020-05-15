@@ -9,6 +9,7 @@ for (const card of fill) {
 
 function dragStart() {
   // console.log('start');
+  resetImg(this)
   setTimeout(() => (this.className = 'invisible'), 0);
 }
 
@@ -57,6 +58,12 @@ function dragDrop() {
 for (const card of fill) {
   card.addEventListener('click', draw);
   card.addEventListener('click', tap);
+  card.addEventListener('click', blast);
+}
+
+// Reset Img Class and Other Property When Dragging
+function resetImg(target) {
+  target.children[0].className = '';
 }
 
 // DRAW
@@ -84,10 +91,27 @@ function tap() {
   }
 }
 
+// CB & DAMAGE
+function blast() {
+  const damage = document.querySelector('.damage');
+  if (damage.contains(this)) {
+    this.children[0].classList.toggle('facedown');
+  }
+}
+
+// CHECKPOINT!!!!
+// function damagePlaced(target) {
+//   target.className += ' tap';
+// }
+
 // TRIGGER
-const trigger = document.querySelector('.trigger');
-trigger.addEventListener('click', drive);
-trigger.addEventListener('contextmenu', triggerToHand);
+function triggerEvt() {
+  const trigger = document.querySelector('.trigger');
+  trigger.addEventListener('click', drive);
+  trigger.addEventListener('contextmenu', triggerToHand);
+}
+
+triggerEvt();
 
 function drive() {
   const deck = document.querySelector('.deck');
@@ -103,7 +127,3 @@ function triggerToHand(e) {
     }
   }
 }
-
-// DAMAGE
-
-
