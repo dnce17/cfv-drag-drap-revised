@@ -74,12 +74,12 @@ function tap() {
   const rc = document.querySelectorAll('.rc');
   const vc = document.querySelector('.vc');
   if (vc.contains(this)) {
-    console.log('In VC');
+    this.classList.toggle('tap');
     return;
   }
   for (var i = 0; i < rc.length; i++) {
     if (rc[i].contains(this)) {
-      console.log(rc[i] + ' contains this');
+      this.classList.toggle('tap');
     }
   }
 }
@@ -103,4 +103,7 @@ function triggerToHand(e) {
     }
   }
 }
+
+// DAMAGE
+
 

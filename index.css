@@ -83,7 +83,7 @@
 
 .unit-ctnr {
   position: relative;
-  /* border: 1px solid blue; */
+  border: 1px solid blue;
   width: 90px;
   height: 130px;
 }
@@ -193,6 +193,28 @@ img {
 .trigger .card {
   transform: rotate(-90deg);
   position: absolute;
+}
+
+.damage {
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 0;
+}
+
+.damage div:nth-child(2) {
+  right: 35px;
+}
+.damage div:nth-child(3) {
+  right: calc(35px * 2);
+}
+.damage div:nth-child(4) {
+  right: calc(35px * 3);
+}
+.damage div:nth-child(5) {
+  right: calc(35px * 4);
+}
+.damage div:nth-child(6) {
+  right: calc(35px * 5);
 }
 
 /* JS only */
