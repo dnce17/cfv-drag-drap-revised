@@ -4,6 +4,19 @@
   padding: 0;
 }
 
+/* JS only */
+.tap {
+  transform: rotate(-90deg);
+}
+
+.facedown {
+  content: url('img/backing.png');
+}
+
+.upright {
+  transform: rotate(90deg);
+}
+
 /* Dragging Purposes ONLY */
 .invisible {
   display: none;
@@ -24,12 +37,15 @@
 
 .wrap-ctnr {
   border: 5px solid saddlebrown;
+  /* FOR TESTING - REMOVE LATER */
+  margin-top: 50px;
 }
 
 .wrap {
   border: 1px solid pink;
   flex-direction: column;
   float: left;
+  position: relative;
 }
 
 .field-ctnr {
@@ -130,16 +146,16 @@ img {
   padding: 5px;
 }
 
+.g-zone .card {
+  position: absolute;
+}
+
 .stride__down {
   border: 1px solid red;
 }
 
 .stride__up {
   border: 1px solid blue;
-}
-
-.g-zone .card {
-  position: absolute;
 }
 
 .trigger {
@@ -225,15 +241,24 @@ img {
   right: calc(35px * 5);
 }
 
-/* JS only */
-.tap {
-  transform: rotate(-90deg);
+.card {
+  width: 90px;
+  height: 130px;
+  position: relative;
 }
 
-.facedown {
-  content: url('img/backing.png');
+.search-ctnr {
+  background-color: rgba(255, 165, 0, 0.8);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
 }
 
-.upright {
-  transform: rotate(90deg);
+.hidden {
+  /* display: none; */
 }
