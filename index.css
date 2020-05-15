@@ -192,6 +192,7 @@ img {
 
 .trigger .card {
   transform: rotate(-90deg);
+  position: absolute;
 }
 
 /* JS only */

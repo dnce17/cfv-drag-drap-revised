@@ -59,7 +59,7 @@ for (const card of fill) {
   card.addEventListener('click', tap);
 }
 
-// Draw
+// DRAW
 function draw() {
   const deck = document.querySelector('.deck');
   if (deck.contains(this)) {
@@ -69,7 +69,7 @@ function draw() {
   }
 }
 
-// Atk/Rest
+// ATK/REST
 function tap() {
   const rc = document.querySelectorAll('.rc');
   const vc = document.querySelector('.vc');
@@ -77,19 +77,30 @@ function tap() {
     console.log('In VC');
     return;
   }
-  for (i = 0; i < rc.length; i++) {
+  for (var i = 0; i < rc.length; i++) {
     if (rc[i].contains(this)) {
       console.log(rc[i] + ' contains this');
     }
   }
 }
 
-// Trigger
+// TRIGGER
 const trigger = document.querySelector('.trigger');
 trigger.addEventListener('click', drive);
+trigger.addEventListener('contextmenu', triggerToHand);
 
 function drive() {
   const deck = document.querySelector('.deck');
   this.appendChild(deck.lastElementChild);
+}
+
+function triggerToHand(e) {
+  e.preventDefault();
+  if (this.childElementCount > 0) {
+    const hand = document.querySelector('.hand').children[0].children[0];
+    while (this.childElementCount > 0) {
+      hand.appendChild(this.lastElementChild);
+    }
+  }
 }
 
