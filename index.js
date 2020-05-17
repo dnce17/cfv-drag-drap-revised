@@ -166,13 +166,13 @@ function appendCards(btn) {
     'deck-count-ctnr': '.deck',
     'drop-count-ctnr': '.drop'
   }
-  
+
   const entries = Object.entries(switchSource);
   for (const [button, source] of entries) {
     if (btn.classList.contains(button)) {
       const target = document.querySelector(source);
       copyCards(target);
-    } 
+    }
   }
 
 }
@@ -208,4 +208,35 @@ function closeSearchCtnr() {
 // Remove the card from the source when you drag the card out of the search ctnr
 
 
-// COUNT
+// COUNT - Will need to change cb later, so that it only counts face up cards
+function updateCount() {
+  var itemsToTrack = {
+    // NOTE: beware of missing periods in key
+    'g-zone-amt': '.stride__down',
+    'gb-amt': '.stride__up',
+    'cb-amt': '.damage',
+    'soul-amt': '.vc',
+    'bind-amt': '.bind',
+    'removal-amt': '.removal',
+    'deck-count-ctnr': '.deck',
+    'drop-count-ctnr': '.drop',
+    'damage-count-ctnr': '.damage',
+  }
+
+  const entries = Object.entries(itemsToTrack);
+  const counts = document.querySelectorAll('.count');
+  for (const count of counts) {
+    console.log(count);
+    console.log(count.parentElement);
+    for (const [button, source] of entries) {
+      if (count.parentElement.classList.contains(button)) {
+        const btn = document.querySelector(`.${button}`);
+        const target = document.querySelector(source);
+        count.textContent = target.childElementCount;
+      }
+    }
+  }
+}
+
+updateCount()
+
