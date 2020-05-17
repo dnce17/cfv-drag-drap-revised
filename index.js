@@ -146,10 +146,14 @@ function searchEvt() {
 searchEvt()
 
 function showSearchCtnr() {
-  // console.log(this);
   const searchCtnr = document.querySelector('.search-ctnr');
   searchCtnr.classList.remove('hidden');
   appendCards(this);
+  // Soul excludes the top card
+  if (this.classList.contains('soul-amt')) {
+    const searchItemCtnr = document.querySelector('.search-item-ctnr');
+    searchItemCtnr.removeChild(searchItemCtnr.children[0]);
+  }
 }
 
 function appendCards(btn) {
@@ -171,16 +175,19 @@ function appendCards(btn) {
       copyCards(target);
     }
   }
-
 }
 
 function copyCards(location) {
   const searchItemCtnr = document.querySelector('.search-item-ctnr');
-  for (var i = 0; i < location.childElementCount; i++) {
-    const cln = location.children[i].cloneNode(true);
+  for (var i = location.childElementCount; i > 0; i--) {
+    const cln = location.children[i - 1].cloneNode(true);
     searchItemCtnr.appendChild(cln);
   }
 }
+
+// if (location.classList.contains('.vc') && i = location.childElementCount) {
+//   continue;
+// }
 
 // close the search ctnr
 function exitSearchEvt() {
