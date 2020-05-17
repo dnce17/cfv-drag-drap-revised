@@ -14,7 +14,24 @@
         <div class="g-zone">
           <!-- NOTE: G-zone should probably be undraggable -->
           <div class='circle center'>
-            <div class='unit-ctnr stride__down'></div>
+            <div class='unit-ctnr stride__down'>
+              <div class="card fill" draggable="true">
+                <img
+                  src="https://52f4e29a8321344e30ae-0f55c9129972ac85d6b1f4e703468e6b.ssl.cf2.rackcdn.com/products/pictures/1083868.jpg">
+                <span class="option_ctnr">
+                  <img src="img/lock_icon.png" class="option lock" title="Lock/Unlock">
+                  <img src="img/bottom_deck_icon.png" class="option bottom" title="Place on Bottom of Deck">
+                </span>
+              </div>
+              <div class="card fill" draggable="true">
+                <img
+                  src="https://52f4e29a8321344e30ae-0f55c9129972ac85d6b1f4e703468e6b.ssl.cf2.rackcdn.com/products/pictures/1083868.jpg">
+                <span class="option_ctnr">
+                  <img src="img/lock_icon.png" class="option lock" title="Lock/Unlock">
+                  <img src="img/bottom_deck_icon.png" class="option bottom" title="Place on Bottom of Deck">
+                </span>
+              </div>
+            </div>
           </div>
           <div class='circle center'>
             <div class='unit-ctnr stride__up'></div>
@@ -39,8 +56,8 @@
 
           <div class='circle center'>
             <div class='unit-ctnr center damage'></div>
-            <span class='detail-ctnr'>
-              <span class='detail count'>6</span>
+            <span class='detail-ctnr damage-count-ctnr'>
+              <span class='detail damage-count'>6</span>
             </span>
           </div>
 
@@ -76,8 +93,8 @@
                 </span>
               </div>
             </div>
-            <span class='detail-ctnr'>
-              <span class='detail count'>50</span>
+            <span class='detail-ctnr deck-count-ctnr'>
+              <span class='detail deck-count'>Deck: 50</span>
             </span>
           </div>
 
@@ -104,8 +121,8 @@
 
           <div class='circle center'>
             <div class='unit-ctnr center drop'></div>
-            <span class='detail-ctnr'>
-              <span class='detail count'>50</span>
+            <span class='detail-ctnr drop-count-ctnr'>
+              <span class='detail drop-count'>Drop: 0</span>
             </span>
           </div>
 
@@ -137,7 +154,11 @@
         <span class='amt removal-amt'>Removal</span>
       </div>
 
-      <div class='search-ctnr hidden'></div>
+      <div class='search-ctnr hidden'>
+        <div class='search-item-ctnr'></div>
+        <button class="exit">X</button>
+      </div>
+
       <div class='power-input-wrap hidden'>
         <div class='power-input-ctnr'>
           <h1 class='purpose'>Change Power</h1>

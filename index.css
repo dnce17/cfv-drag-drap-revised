@@ -253,7 +253,7 @@ img {
 
 /* RETURN TO LATER */
 .hidden {
-  /* display: none; */
+  visibility: hidden;
 }
 
 .search-ctnr {
@@ -264,9 +264,26 @@ img {
   height: 50%;
   display: flex;
   justify-content: center;
+}
+
+.search-item-ctnr {
+  /* background-color: purple; */
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
   align-content: flex-start;
   flex-wrap: wrap;
   overflow: auto;
+  /* Remove later */
+  padding-top: 10px;
+}
+
+.exit {
+  position: absolute;
+  bottom: 0;
+  width: 35px;
+  height: 20px;
 }
 /*  */
 
@@ -279,6 +296,7 @@ img {
   text-align: center;
   padding: 5px;
   border-radius: 10px;
+  /* Can use .hidden later */
   display: none;
 }
 

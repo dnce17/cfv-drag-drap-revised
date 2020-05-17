@@ -135,6 +135,78 @@ function triggerToHand(e) {
 }
 
 // SEARCH
-function amtEvt() {
-  
+function searchEvt() {
+  const allAmt = document.querySelectorAll('.amt');
+  for (const amt of allAmt) {
+    if (amt.classList.contains('cb-amt')) {
+      continue;
+    } else {
+      amt.addEventListener('click', showSearchCtnr);
+    }
+  }
+  const deckCountBtn = document.querySelector('.deck-count-ctnr');
+  const dropCountBtn = document.querySelector('.drop-count-ctnr');
+  deckCountBtn.addEventListener('click', showSearchCtnr);
+  dropCountBtn.addEventListener('click', showSearchCtnr);
+}
+
+searchEvt()
+
+function showSearchCtnr() {
+  // console.log(this);
+  const searchCtnr = document.querySelector('.search-ctnr');
+  searchCtnr.classList.remove('hidden');
+  appendCards(this);
+}
+
+function appendCards(btn) {
+  if (btn.classList.contains('g-zone-amt')) {
+    const gzone = document.querySelector('.stride__down');
+    copyCards(gzone);
+  } else if (btn.classList.contains('gb-amt')) {
+    const gb = document.querySelector('.stride__up');
+    copyCards(gb);
+  } else if (btn.classList.contains('soul-amt')) {
+    const soul = document.querySelector('.vc');
+    copyCards(soul);
+  } else if (btn.classList.contains('bind-amt')) {
+    const bind = document.querySelector('.bind');
+    copyCards(bind);
+  } else if (btn.classList.contains('removal-amt')) {
+    const removal = document.querySelector('.removal');
+    copyCards(removal);
+  } else if (btn.classList.contains('deck-count-ctnr')) {
+    const deck = document.querySelector('.deck');
+    copyCards(deck);
+  } else if (btn.classList.contains('drop-count-ctnr')) {
+    const drop = document.querySelector('.drop');
+    copyCards(drop);
+  }
+}
+
+function copyCards(location) {
+  const searchItemCtnr = document.querySelector('.search-item-ctnr');
+  for (var i = 0; i < location.childElementCount; i++) {
+    const cln = location.children[i].cloneNode(true);
+    searchItemCtnr.appendChild(cln);
+  }
+}
+
+// close the search ctnr
+function exitSearchEvt() {
+  const exit = document.querySelector('.exit');
+  exit.addEventListener('click', closeSearchCtnr);
+}
+
+exitSearchEvt();
+
+function closeSearchCtnr() {
+  const searchCtnr = document.querySelector('.search-ctnr');
+  searchCtnr.className += (' hidden');
+  const searchItemCtnr = document.querySelector('.search-item-ctnr');
+  var card = searchItemCtnr.lastElementChild;
+  while (card) {
+    searchItemCtnr.removeChild(card);
+    card = searchItemCtnr.lastElementChild;
+  }
 }
