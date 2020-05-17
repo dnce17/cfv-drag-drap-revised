@@ -139,11 +139,7 @@ function triggerToHand(e) {
 function searchEvt() {
   const allClickable = document.querySelectorAll('.clickable');
   for (const clickable of allClickable) {
-    if (clickable.classList.contains('cb-amt')) {
-      continue;
-    } else {
-      clickable.addEventListener('click', showSearchCtnr);
-    }
+    clickable.addEventListener('click', showSearchCtnr);
   }
 }
 
@@ -215,7 +211,6 @@ function updateCount() {
     // NOTE: beware of missing periods in key
     'g-zone-amt': '.stride__down',
     'gb-amt': '.stride__up',
-    'cb-amt': '.damage',
     'soul-amt': '.vc',
     'bind-amt': '.bind',
     'removal-amt': '.removal',
