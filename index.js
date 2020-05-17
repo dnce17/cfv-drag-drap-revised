@@ -23,7 +23,7 @@ function upright(target) {
 }
 
 function dragStart(e) {
-  console.log('start');
+  // console.log('start');
   clsReset(this);
   upright(this);
   setTimeout(() => (this.className = 'invisible'), 0);
@@ -136,18 +136,14 @@ function triggerToHand(e) {
 
 // SEARCH
 function searchEvt() {
-  const allAmt = document.querySelectorAll('.amt');
-  for (const amt of allAmt) {
-    if (amt.classList.contains('cb-amt')) {
+  const allClickable = document.querySelectorAll('.clickable');
+  for (const clickable of allClickable) {
+    if (clickable.classList.contains('cb-amt')) {
       continue;
     } else {
-      amt.addEventListener('click', showSearchCtnr);
+      clickable.addEventListener('click', showSearchCtnr);
     }
   }
-  const deckCountBtn = document.querySelector('.deck-count-ctnr');
-  const dropCountBtn = document.querySelector('.drop-count-ctnr');
-  deckCountBtn.addEventListener('click', showSearchCtnr);
-  dropCountBtn.addEventListener('click', showSearchCtnr);
 }
 
 searchEvt()
@@ -160,28 +156,25 @@ function showSearchCtnr() {
 }
 
 function appendCards(btn) {
-  if (btn.classList.contains('g-zone-amt')) {
-    const gzone = document.querySelector('.stride__down');
-    copyCards(gzone);
-  } else if (btn.classList.contains('gb-amt')) {
-    const gb = document.querySelector('.stride__up');
-    copyCards(gb);
-  } else if (btn.classList.contains('soul-amt')) {
-    const soul = document.querySelector('.vc');
-    copyCards(soul);
-  } else if (btn.classList.contains('bind-amt')) {
-    const bind = document.querySelector('.bind');
-    copyCards(bind);
-  } else if (btn.classList.contains('removal-amt')) {
-    const removal = document.querySelector('.removal');
-    copyCards(removal);
-  } else if (btn.classList.contains('deck-count-ctnr')) {
-    const deck = document.querySelector('.deck');
-    copyCards(deck);
-  } else if (btn.classList.contains('drop-count-ctnr')) {
-    const drop = document.querySelector('.drop');
-    copyCards(drop);
+
+  var switchSource = {
+    'g-zone-amt': '.stride__down',
+    'gb-amt': '.stride__up',
+    'soul-amt': '.vc',
+    'bind-amt': '.bind',
+    'removal-amt': '.removal',
+    'deck-count-ctnr': '.deck',
+    'drop-count-ctnr': '.drop'
   }
+  
+  const entries = Object.entries(switchSource);
+  for (const [button, source] of entries) {
+    if (btn.classList.contains(button)) {
+      const target = document.querySelector(source);
+      copyCards(target);
+    } 
+  }
+
 }
 
 function copyCards(location) {
@@ -210,3 +203,9 @@ function closeSearchCtnr() {
     card = searchItemCtnr.lastElementChild;
   }
 }
+
+// NEXT OBJECTIVE
+// Remove the card from the source when you drag the card out of the search ctnr
+
+
+// COUNT
