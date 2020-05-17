@@ -32,6 +32,7 @@ function dragStart(e) {
 function dragEnd() {
   // console.log('end');
   this.className = 'card fill';
+  updateCount();
 }
 
 for (const circle of circles) {
@@ -226,17 +227,18 @@ function updateCount() {
   const entries = Object.entries(itemsToTrack);
   const counts = document.querySelectorAll('.count');
   for (const count of counts) {
-    console.log(count);
-    console.log(count.parentElement);
     for (const [button, source] of entries) {
       if (count.parentElement.classList.contains(button)) {
-        const btn = document.querySelector(`.${button}`);
         const target = document.querySelector(source);
         count.textContent = target.childElementCount;
+        if (button == 'soul-amt') {
+          if (target.childElementCount > 0) {
+            count.textContent = target.childElementCount - 1;
+          }
+        }
       }
     }
   }
 }
 
-updateCount()
-
+updateCount();
