@@ -23,14 +23,14 @@ function upright(target) {
 }
 
 function dragStart(e) {
-  console.log('start');
+  // console.log('start');
   clsReset(this);
   upright(this);
   setTimeout(() => (this.className = 'invisible'), 0);
 }
 
 function dragEnd() {
-  console.log('end');
+  // console.log('end');
   this.className = 'card fill';
   updateCount();
 }
@@ -61,7 +61,7 @@ function dragLeave() {
 }
 
 function dragDrop() {
-  console.log('drop');
+  // console.log('drop');
   this.className = 'circle center';
   for (const card of fill) {
     if (card.classList.contains('invisible')) {
@@ -264,42 +264,48 @@ updateCount();
 // UNDER CONSTRUCTION
 // OBJECTIVE - put this above count later 
 // Remove the card from the source when you drag the card out of the search ctnr
-var itemsToTrack = {
-  // NOTE: beware of missing periods in key
-  'g-zone-amt': '.stride__down',
-  'gb-amt': '.stride__up',
-  'soul-amt': '.vc',
-  'bind-amt': '.bind',
-  'removal-amt': '.removal',
-  'deck-count-ctnr': '.deck',
-  'drop-count-ctnr': '.drop',
-  'damage-count-ctnr': '.damage',
+
+function removedFromSearchCtnr() {
+  var itemsToTrack = {
+    // NOTE: beware of missing periods in key
+    'g-zone-amt': '.stride__down',
+    'gb-amt': '.stride__up',
+    'soul-amt': '.vc',
+    'bind-amt': '.bind',
+    'removal-amt': '.removal',
+    'deck-count-ctnr': '.deck',
+    'drop-count-ctnr': '.drop',
+    'damage-count-ctnr': '.damage',
+  }
+
+  const searchItemCtnr = document.querySelector('.search-item-ctnr');
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(record => {
+      if (record.removedNodes.length > 0) {
+        for (const clickable of allClickable) {
+          if (clickable.classList.contains('selected')) {
+            console.log(clickable);
+            const entries = Object.entries(itemsToTrack);
+            for (const [button, source] of entries) {
+              if (clickable.classList.contains(button)) {
+                const target = document.querySelector(source);
+                const removed = record.removedNodes[0];
+                for (var i = 0; i < target.childElementCount; i++) {
+                  if (removed.children[0].src == target.children[i].children[0].src) {
+                    target.removeChild(target.children[i]);
+                    break;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    })
+  })
+  observer.observe(searchItemCtnr, {
+    childList: true
+  });
 }
 
-// const entries = Object.entries(itemsToTrack);
-
-// for (const [button, source] of entries) {
-//   const target = document.querySelector(source);
-//   removedFromSearchCtnr(target)
-// }
-
-// function removedFromSearchCtnr(toObserve) {
-//   const observer = new MutationObserver(mutations => {
-//     mutations.forEach(record => {
-//       console.log(record);
-//     })
-//   })
-//   observer.observe(toObserve, {
-//     childList: true
-//   });
-// }
-
-const searchItemCtnr = document.querySelector('.search-item-ctnr');
-const observer = new MutationObserver(mutations => {
-  mutations.forEach(record => {
-    console.log(record);
-  })
-})
-observer.observe(searchItemCtnr, {
-  childList: true
-});
+removedFromSearchCtnr();
