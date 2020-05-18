@@ -1,4 +1,4 @@
-const fill = document.querySelectorAll('.fill');
+var fill = document.querySelectorAll('.fill');
 const circles = document.querySelectorAll('.circle');
 
 // Add Drag Events
@@ -23,14 +23,14 @@ function upright(target) {
 }
 
 function dragStart(e) {
-  // console.log('start');
+  console.log('start');
   clsReset(this);
   upright(this);
   setTimeout(() => (this.className = 'invisible'), 0);
 }
 
 function dragEnd() {
-  // console.log('end');
+  console.log('end');
   this.className = 'card fill';
   updateCount();
 }
@@ -61,12 +61,13 @@ function dragLeave() {
 }
 
 function dragDrop() {
-  // console.log('drop');
+  console.log('drop');
   this.className = 'circle center';
   for (const card of fill) {
     if (card.classList.contains('invisible')) {
       const unitCtnr = this.children[0];
       unitCtnr.appendChild(card);
+      // console.log('card added');
     }
   }
 }
@@ -82,9 +83,10 @@ for (const card of fill) {
 function draw() {
   const deck = document.querySelector('.deck');
   if (deck.contains(this)) {
-    console.log('Card has been drawn from deck');
+    // console.log('Card has been drawn from deck');
     const hand = document.querySelector('.hand').children[0].children[0];
     hand.appendChild(this);
+    updateCount();
   }
 }
 
@@ -135,9 +137,10 @@ function triggerToHand(e) {
   }
 }
 
-// SEARCH
+// OPEN SEARCH
+const allClickable = document.querySelectorAll('.clickable');
 function searchEvt() {
-  const allClickable = document.querySelectorAll('.clickable');
+  // const allClickable = document.querySelectorAll('.clickable');
   for (const clickable of allClickable) {
     clickable.addEventListener('click', showSearchCtnr);
   }
@@ -146,6 +149,13 @@ function searchEvt() {
 searchEvt()
 
 function showSearchCtnr() {
+  for (const clickable of allClickable) {
+    if (clickable.classList.contains('selected')) {
+      return;
+    }
+  }
+  this.className += ' selected';
+
   const searchCtnr = document.querySelector('.search-ctnr');
   searchCtnr.classList.remove('hidden');
   appendCards(this);
@@ -181,15 +191,19 @@ function copyCards(location) {
   const searchItemCtnr = document.querySelector('.search-item-ctnr');
   for (var i = location.childElementCount; i > 0; i--) {
     const cln = location.children[i - 1].cloneNode(true);
+    // add evts to the cards (since they're not copied)
+    cln.addEventListener('dragstart', dragStart);
+    cln.addEventListener('dragend', dragEnd);
+    cln.addEventListener('click', draw);
+    cln.addEventListener('click', tap);
+    cln.addEventListener('click', blast);
     searchItemCtnr.appendChild(cln);
   }
+  // to include the new cards in dragDrop - NOTE: this can be removed if you local the fill variable
+  fill = document.querySelectorAll('.fill');
 }
 
-// if (location.classList.contains('.vc') && i = location.childElementCount) {
-//   continue;
-// }
-
-// close the search ctnr
+// CLOSE SEARCH
 function exitSearchEvt() {
   const exit = document.querySelector('.exit');
   exit.addEventListener('click', closeSearchCtnr);
@@ -198,6 +212,11 @@ function exitSearchEvt() {
 exitSearchEvt();
 
 function closeSearchCtnr() {
+  for (const clickable of allClickable) {
+    if (clickable.classList.contains('selected')) {
+      clickable.classList.remove('selected');
+    }
+  }
   const searchCtnr = document.querySelector('.search-ctnr');
   searchCtnr.className += (' hidden');
   const searchItemCtnr = document.querySelector('.search-item-ctnr');
@@ -207,10 +226,6 @@ function closeSearchCtnr() {
     card = searchItemCtnr.lastElementChild;
   }
 }
-
-// NEXT OBJECTIVE
-// Remove the card from the source when you drag the card out of the search ctnr
-
 
 // COUNT - Will need to change cb later, so that it only counts face up cards
 function updateCount() {
@@ -244,3 +259,47 @@ function updateCount() {
 }
 
 updateCount();
+
+
+// UNDER CONSTRUCTION
+// OBJECTIVE - put this above count later 
+// Remove the card from the source when you drag the card out of the search ctnr
+var itemsToTrack = {
+  // NOTE: beware of missing periods in key
+  'g-zone-amt': '.stride__down',
+  'gb-amt': '.stride__up',
+  'soul-amt': '.vc',
+  'bind-amt': '.bind',
+  'removal-amt': '.removal',
+  'deck-count-ctnr': '.deck',
+  'drop-count-ctnr': '.drop',
+  'damage-count-ctnr': '.damage',
+}
+
+// const entries = Object.entries(itemsToTrack);
+
+// for (const [button, source] of entries) {
+//   const target = document.querySelector(source);
+//   removedFromSearchCtnr(target)
+// }
+
+// function removedFromSearchCtnr(toObserve) {
+//   const observer = new MutationObserver(mutations => {
+//     mutations.forEach(record => {
+//       console.log(record);
+//     })
+//   })
+//   observer.observe(toObserve, {
+//     childList: true
+//   });
+// }
+
+const searchItemCtnr = document.querySelector('.search-item-ctnr');
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(record => {
+    console.log(record);
+  })
+})
+observer.observe(searchItemCtnr, {
+  childList: true
+});

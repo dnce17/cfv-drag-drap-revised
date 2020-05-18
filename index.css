@@ -17,6 +17,10 @@
   transform: rotate(90deg);
 }
 
+.selected {
+  box-shadow: 0 0 10pt 5pt blue;
+}
+
 /* Dragging Purposes ONLY */
 .invisible {
   display: none;
