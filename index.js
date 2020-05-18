@@ -11,6 +11,7 @@ for (const card of fill) {
 function clsReset(target) {
   target.className = 'card fill';
   target.children[0].className = '';
+  target.children[1].className = 'option_ctnr';
 }
 
 // For zone that inherently are -90 deg - these cards won't have tap
@@ -308,6 +309,36 @@ function updateCount() {
 
 updateCount();
 
+
 // ACTIONS ABOVE CARD - Lock, Bottom of Deck
+
+
+const action = document.querySelectorAll('.option');
+for (const option of action) {
+  option.addEventListener('click', locked);
+  option.addEventListener('click', placeBottomDeck);
+  // option.addEventListener('click', locked);
+}
+
+function locked() {
+  if (this.classList.contains('lock')) {
+    // console.log('clicked lock');
+    const card = this.parentElement.previousElementSibling;
+    card.classList.toggle('facedown');
+  }
+}
+
+function placeBottomDeck() {
+  if (this.classList.contains('bottom')) {
+    console.log('clicked bottom');
+    const deck = document.querySelector('.deck');
+    const card = this.parentElement.parentElement;
+    // Idk why deck is the only thing not working - no idea why its appending to hand
+    deck.appendChild(card);
+  }
+}
+
+
+
 
 

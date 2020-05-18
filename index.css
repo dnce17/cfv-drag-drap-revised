@@ -25,10 +25,6 @@
   box-shadow: 0 0 10pt 5pt blue;
 }
 
-.locked {
-  content: url('img/backing.png');
-}
-
 /* Dragging Purposes ONLY */
 .invisible {
   display: none;
@@ -341,6 +337,6 @@ img {
 }
 
 .option_ctnr .option:hover {
-  outline: 2px solid green;
+  box-shadow: 0 0 10pt 2pt orange;
   z-index: 1;
 }
