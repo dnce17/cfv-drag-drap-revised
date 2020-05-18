@@ -64,19 +64,31 @@ function dragLeave() {
 function dragDrop() {
   // console.log('drop');
   this.className = 'circle center';
+
   for (const card of fill) {
     if (card.classList.contains('invisible')) {
       const unitCtnr = this.children[0];
       unitCtnr.appendChild(card);
       // console.log('card added');
+
+      // if (this.parentElement.classList.contains('hand')) {
+      //   console.log('card to hand');
+      //   unitCtnr.appendChild(this);
+      // } else {
+      //   const unitCtnr = this.children[0];
+      //   unitCtnr.appendChild(card);
+      // }
+
     }
   }
 }
 
 // Mechanics
-for (const card of fill) {
+for (const cardCtnr of fill) {
+  // Let the focus be on the card img
+  const card = cardCtnr.children[0];
   card.addEventListener('click', draw);
-  card.children[0].addEventListener('click', tap);
+  card.addEventListener('click', tap);
   card.addEventListener('click', blast);
 }
 
@@ -84,7 +96,7 @@ for (const card of fill) {
 function draw() {
   const deck = document.querySelector('.deck');
   if (deck.contains(this)) {
-    // console.log('Card has been drawn from deck');
+    console.log('Card has been drawn from deck');
     const hand = document.querySelector('.hand').children[0].children[0];
     hand.appendChild(this);
     updateCount();
@@ -330,11 +342,13 @@ function locked() {
 
 function placeBottomDeck() {
   if (this.classList.contains('bottom')) {
-    console.log('clicked bottom');
     const deck = document.querySelector('.deck');
+    console.log(deck);
     const card = this.parentElement.parentElement;
     // Idk why deck is the only thing not working - no idea why its appending to hand
+    // FIXED!! - Draw was activating for some reason when clicking the icon
     deck.appendChild(card);
+    updateCount();
   }
 }
 

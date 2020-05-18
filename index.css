@@ -340,3 +340,15 @@ img {
   box-shadow: 0 0 10pt 2pt orange;
   z-index: 1;
 }
+
+/* .hand {
+  background-color: green;
+  width: 75%;
+  height: 140px;
+  display: flex;
+}
+
+.hand .unit-ctnr {
+  width: auto;
+  height: 130px;
+} */
