@@ -9,6 +9,10 @@
   transform: rotate(-90deg);
 }
 
+.adjust_option {
+  top: -5px !important;
+}
+
 .facedown {
   content: url('img/backing.png');
 }
@@ -19,6 +23,10 @@
 
 .selected {
   box-shadow: 0 0 10pt 5pt blue;
+}
+
+.locked {
+  content: url('img/backing.png');
 }
 
 /* Dragging Purposes ONLY */
@@ -160,6 +168,10 @@ img {
 
 .stride__down {
   border: 1px solid red;
+}
+
+.stride__down .card > img {
+  /* content: url('img/backing.png'); */
 }
 
 .stride__up {
@@ -326,4 +338,9 @@ img {
 .btn {
   padding: 5px;
   font-size: 13px;
+}
+
+.option_ctnr .option:hover {
+  outline: 2px solid green;
+  z-index: 1;
 }

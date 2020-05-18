@@ -75,7 +75,7 @@ function dragDrop() {
 // Mechanics
 for (const card of fill) {
   card.addEventListener('click', draw);
-  card.addEventListener('click', tap);
+  card.children[0].addEventListener('click', tap);
   card.addEventListener('click', blast);
 }
 
@@ -96,11 +96,13 @@ function tap() {
   const vc = document.querySelector('.vc');
   if (vc.contains(this)) {
     this.classList.toggle('tap');
+    this.nextElementSibling.classList.toggle('adjust_option');
     return;
   }
   for (var i = 0; i < rc.length; i++) {
     if (rc[i].contains(this)) {
       this.classList.toggle('tap');
+      this.nextElementSibling.classList.toggle('adjust_option');
     }
   }
 }
@@ -227,44 +229,7 @@ function closeSearchCtnr() {
   }
 }
 
-// COUNT - Will need to change cb later, so that it only counts face up cards
-function updateCount() {
-  var itemsToTrack = {
-    // NOTE: beware of missing periods in key
-    'g-zone-amt': '.stride__down',
-    'gb-amt': '.stride__up',
-    'soul-amt': '.vc',
-    'bind-amt': '.bind',
-    'removal-amt': '.removal',
-    'deck-count-ctnr': '.deck',
-    'drop-count-ctnr': '.drop',
-    'damage-count-ctnr': '.damage',
-  }
-
-  const entries = Object.entries(itemsToTrack);
-  const counts = document.querySelectorAll('.count');
-  for (const count of counts) {
-    for (const [button, source] of entries) {
-      if (count.parentElement.classList.contains(button)) {
-        const target = document.querySelector(source);
-        count.textContent = target.childElementCount;
-        if (button == 'soul-amt') {
-          if (target.childElementCount > 0) {
-            count.textContent = target.childElementCount - 1;
-          }
-        }
-      }
-    }
-  }
-}
-
-updateCount();
-
-
-// UNDER CONSTRUCTION
-// OBJECTIVE - put this above count later 
-// Remove the card from the source when you drag the card out of the search ctnr
-
+// REMOVE CARD FROM SOURCE WHEN REMOVED FROM SEARCH CTNR
 function removedFromSearchCtnr() {
   var itemsToTrack = {
     // NOTE: beware of missing periods in key
@@ -309,3 +274,40 @@ function removedFromSearchCtnr() {
 }
 
 removedFromSearchCtnr();
+
+// COUNT
+function updateCount() {
+  var itemsToTrack = {
+    // NOTE: beware of missing periods in key
+    'g-zone-amt': '.stride__down',
+    'gb-amt': '.stride__up',
+    'soul-amt': '.vc',
+    'bind-amt': '.bind',
+    'removal-amt': '.removal',
+    'deck-count-ctnr': '.deck',
+    'drop-count-ctnr': '.drop',
+    'damage-count-ctnr': '.damage',
+  }
+
+  const entries = Object.entries(itemsToTrack);
+  const counts = document.querySelectorAll('.count');
+  for (const count of counts) {
+    for (const [button, source] of entries) {
+      if (count.parentElement.classList.contains(button)) {
+        const target = document.querySelector(source);
+        count.textContent = target.childElementCount;
+        if (button == 'soul-amt') {
+          if (target.childElementCount > 0) {
+            count.textContent = target.childElementCount - 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+updateCount();
+
+// ACTIONS ABOVE CARD - Lock, Bottom of Deck
+
+
