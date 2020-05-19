@@ -171,6 +171,10 @@ function showSearchCtnr() {
   }
   this.className += ' selected';
 
+  // SHOW SOURCE - under construction
+  const source = document.querySelector('.source');
+  source.textContent = this.textContent;
+
   const searchCtnr = document.querySelector('.search-ctnr');
   searchCtnr.classList.remove('hidden');
   appendCards(this);
@@ -323,8 +327,6 @@ updateCount();
 
 
 // ACTIONS ABOVE CARD - Lock, Bottom of Deck
-
-
 const action = document.querySelectorAll('.option');
 for (const option of action) {
   option.addEventListener('click', locked);
@@ -345,8 +347,6 @@ function placeBottomDeck() {
     const deck = document.querySelector('.deck');
     console.log(deck);
     const card = this.parentElement.parentElement;
-    // Idk why deck is the only thing not working - no idea why its appending to hand
-    // FIXED!! - Draw was activating for some reason when clicking the icon
     deck.appendChild(card);
     updateCount();
   }
