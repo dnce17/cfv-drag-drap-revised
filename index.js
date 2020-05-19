@@ -98,7 +98,7 @@ function draw() {
   if (deck.contains(this)) {
     console.log('Card has been drawn from deck');
     const hand = document.querySelector('.hand').children[0].children[0];
-    hand.appendChild(this);
+    hand.appendChild(this.parentElement);
     updateCount();
   }
 }
