@@ -11,7 +11,7 @@ for (const card of fill) {
 function clsReset(target) {
   target.className = 'card fill';
   target.children[0].className = '';
-  target.children[1].className = 'option_ctnr';
+  target.children[1].className = 'option-ctnr';
 }
 
 // For zone that inherently are -90 deg - these cards won't have tap
