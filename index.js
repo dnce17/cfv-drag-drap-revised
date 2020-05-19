@@ -208,8 +208,9 @@ function appendCards(btn) {
 
 function copyCards(location) {
   const searchItemCtnr = document.querySelector('.search-item-ctnr');
-  for (var i = location.childElementCount - 1; i > 0; i--) {
-    const cln = location.children[i].cloneNode(true);
+  for (var i = location.childElementCount; i > 0; i--) {
+    const cln = location.children[i - 1].cloneNode(true);
+    console.log(cln);
     // add evts to the cards (since they're not copied)
     cln.addEventListener('dragstart', dragStart);
     cln.addEventListener('dragend', dragEnd);
