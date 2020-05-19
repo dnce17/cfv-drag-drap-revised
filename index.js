@@ -172,8 +172,8 @@ function showSearchCtnr() {
   this.className += ' selected';
 
   // SHOW SOURCE - under construction
-  const source = document.querySelector('.source');
-  source.textContent = this.textContent;
+  // const source = document.querySelector('.source');
+  // source.textContent = this.textContent;
 
   const searchCtnr = document.querySelector('.search-ctnr');
   searchCtnr.classList.remove('hidden');
@@ -208,8 +208,8 @@ function appendCards(btn) {
 
 function copyCards(location) {
   const searchItemCtnr = document.querySelector('.search-item-ctnr');
-  for (var i = location.childElementCount; i > 0; i--) {
-    const cln = location.children[i - 1].cloneNode(true);
+  for (var i = location.childElementCount - 1; i > 0; i--) {
+    const cln = location.children[i].cloneNode(true);
     // add evts to the cards (since they're not copied)
     cln.addEventListener('dragstart', dragStart);
     cln.addEventListener('dragend', dragEnd);

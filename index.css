@@ -220,7 +220,6 @@ img {
 }
 
 .option-ctnr {
-  visibility: hidden;
   background-color: skyblue;
   display: flex;
   justify-content: center;
@@ -289,7 +288,7 @@ img {
   align-content: flex-start;
   flex-wrap: wrap;
   /* cause the option-ctnr to cutoff */
-  overflow: auto;
+  /* overflow: auto; */
   /* Remove later */
   padding-top: 10px;
 }
